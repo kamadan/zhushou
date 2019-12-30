@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/Utilities/Hook.h>
 #include <GWCA/GameEntities/Item.h>
@@ -42,7 +42,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Materials"; }
+	const char* Name() const override { return "材料"; }
 
 	void Initialize() override;
 	void Terminate() override;

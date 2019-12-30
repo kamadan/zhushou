@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "TradeWindow.h"
 
 #include <WinSock2.h>
@@ -38,7 +38,7 @@ void TradeWindow::Initialize() {
 
 	WSADATA wsaData;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData)) {
-		printf("WSAStartup Failed.\n");
+		printf("WSAStartup 失败.\n");
 		return;
 	}
 
@@ -196,14 +196,14 @@ void TradeWindow::search(std::string query) {
 	 *  - From a connected web socket, we send a Json formated packet with the format
 	 *  {
 	 *   "query":  str($query$),
-	 *   "offset": int($page$),
+	 *   "差位": int($page$),
 	 *   "sugest": int(1 or 2)
 	 *  }
 	 */
 
 	json request;
 	request["query"] = query;
-	request["offset"] = 0;
+	request["差位"] = 0;
 	request["suggest"] = 0;
 	ws_window->send(request.dump());
 }
@@ -256,17 +256,17 @@ void TradeWindow::Draw(IDirect3DDevice9* device) {
 		ImGui::BeginChild("trade_scroll", ImVec2(0, -20.0f - ImGui::GetStyle().ItemInnerSpacing.y));
 		/* Connection checks */
 		if (!ws_window && !ws_window_connecting) {
-			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("The connection to kamadan.decltype.com has timed out.").x) / 2);
+			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("对 kamadan.github.io 广告网的连接请求已超时.").x) / 2);
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() / 2);
-			ImGui::Text("The connection to kamadan.decltype.com has timed out.");
-			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("Click to reconnect").x) / 2);
-			if (ImGui::Button("Click to reconnect")) {
+			ImGui::Text("对 kamadan.github.io 广告网的连接请求已超时.");
+			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("击此以重新连网").x) / 2);
+			if (ImGui::Button("击此以重新连网")) {
 				AsyncWindowConnect();
 			}
 		} else if (ws_window_connecting || (ws_window && ws_window->getReadyState() == WebSocket::CONNECTING)) {
-			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("Connecting...").x)/2);
+			ImGui::SetCursorPosX((ImGui::GetWindowWidth() - ImGui::CalcTextSize("正在连接...").x)/2);
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() / 2);
-			ImGui::Text("Connecting...");
+			ImGui::Text("正在连接...");
 		} else {
 			/* Display trade messages */
 			bool show_time = ImGui::GetWindowWidth() > 600.0f;
@@ -296,15 +296,15 @@ void TradeWindow::Draw(IDirect3DDevice9* device) {
 					// decide if days, hours, minutes, seconds...
 					if ((int)(time_since_message / (60 * 60 * 24))) {
 						int days = (int)(time_since_message / (60 * 60 * 24));
-						_snprintf(timetext, 128, "%d %s ago", days, days > 1 ? "days" : "day");
+						_snprintf(timetext, 128, "%d %s 前", days, days > 1 ? "天" : "day");
 					} else if ((int)(time_since_message / (60 * 60))) {
 						int hours = (int)(time_since_message / (60 * 60));
-						_snprintf(timetext, 128, "%d %s ago", hours, hours > 1 ? "hours" : "hour");
+						_snprintf(timetext, 128, "%d %s 前", hours, hours > 1 ? "小时" : "小时");
 					} else if ((int)(time_since_message / (60))) {
 						int minutes = (int)(time_since_message / 60);
-						_snprintf(timetext, 128, "%d %s ago", minutes, minutes > 1 ? "minutes" : "minute");
+						_snprintf(timetext, 128, "%d %s 前", minutes, minutes > 1 ? "分钟" : "分钟");
 					} else {
-						_snprintf(timetext, 128, "%d %s ago", time_since_message, time_since_message > 1 ? "seconds" : "second");
+						_snprintf(timetext, 128, "%d %s 前", time_since_message, time_since_message > 1 ? "秒" : "秒");
 					}
 					ImGui::SetCursorPosX(playername_left - innerspacing - ImGui::CalcTextSize(timetext).x);
 					ImGui::Text(timetext);
@@ -334,15 +334,15 @@ void TradeWindow::Draw(IDirect3DDevice9* device) {
 		ImGui::EndChild();
 
 		/* Link to website footer */
-		if (ImGui::Button("Powered by https://kamadan.decltype.org", ImVec2(ImGui::GetWindowContentRegionWidth(), 20.0f))){ 
+		if (ImGui::Button("广告网(文字版) https://kamadan.github.io", ImVec2(ImGui::GetWindowContentRegionWidth(), 20.0f))){ 
 			CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-			ShellExecuteA(NULL, "open", "https://kamadan.decltype.org", NULL, NULL, SW_SHOWNORMAL);
+			ShellExecuteA(NULL, "打开", "https://kamadan.github.io", NULL, NULL, SW_SHOWNORMAL);
 		}
 
 		/* Alerts window */
 		if (show_alert_window) {
 			ImGui::SetNextWindowSize(ImVec2(250, 220), ImGuiCond_FirstUseEver);
-			if (ImGui::Begin("Trade Alerts", &show_alert_window)) {
+			if (ImGui::Begin("买卖提示", &show_alert_window)) {
 				DrawAlertsWindowContent(true);
 			}
 			ImGui::End();
@@ -353,7 +353,7 @@ void TradeWindow::Draw(IDirect3DDevice9* device) {
 
 void TradeWindow::DrawAlertsWindowContent(bool ownwindow) {
 	ImGui::Text("Alerts");
-	ImGui::Checkbox("Send Kamadan ad1 trade chat to your trade chat", &print_game_chat);
+	ImGui::Checkbox("把卡玛丹1区的广告导入角色的交易频道", &print_game_chat);
 	ImGui::Checkbox("Only show messages containing:", &filter_alerts);
 	ImGui::TextDisabled("(Each line is a separate keyword. Not case sensitive.)");
 	if (ImGui::InputTextMultiline("##alertfilter", alert_buf, ALERT_BUF_SIZE, 

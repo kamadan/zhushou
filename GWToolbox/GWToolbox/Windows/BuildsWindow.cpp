@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "BuildsWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -43,10 +43,10 @@ void BuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 					Send(tbuild);
 				}
 				if (ImGui::IsItemHovered()) {
-					ImGui::SetTooltip("Click to send teambuild to chat");
+					ImGui::SetTooltip("击此以发送整团的技能样本");
 				}
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Edit", ImVec2(60.0f, 0))) {
+				if (ImGui::Button("修改", ImVec2(60.0f, 0))) {
 					tbuild.edit_open = true;
 				}
 				ImGui::PopID();
@@ -70,7 +70,7 @@ void BuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 		ImGui::SetNextWindowSize(ImVec2(500, 0), ImGuiSetCond_FirstUseEver);
 		if (ImGui::Begin(winname, &tbuild.edit_open)) {
 			ImGui::PushItemWidth(-120.0f);
-			if (ImGui::InputText("Build Name", tbuild.name, 128)) builds_changed = true;
+			if (ImGui::InputText("样本名", tbuild.name, 128)) builds_changed = true;
 			ImGui::PopItemWidth();
 			ImGui::SetCursorPosX(30.0f);
 			ImGui::Text("Name");
@@ -88,15 +88,15 @@ void BuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 				if (ImGui::InputText("###code", build.code, 128)) builds_changed = true;
 				ImGui::PopItemWidth();
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Send", ImVec2(50.0f, 0))) {
+				if (ImGui::Button("发送", ImVec2(50.0f, 0))) {
 					Send(tbuild, j);
 				}
-				if (ImGui::IsItemHovered()) ImGui::SetTooltip("Send to team chat");
+				if (ImGui::IsItemHovered()) ImGui::SetTooltip("往队伍频道发送");
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Load", ImVec2(50.0f, 0))) {
+				if (ImGui::Button("装填", ImVec2(50.0f, 0))) {
 					GW::SkillbarMgr::LoadSkillTemplate(build.code);
 				}
-				if (ImGui::IsItemHovered()) ImGui::SetTooltip("Load build on your character");
+				if (ImGui::IsItemHovered()) ImGui::SetTooltip("为角色装填技能样本");
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
 				if (ImGui::Button("x", ImVec2(24.0f, 0))) {
 					tbuild.builds.erase(tbuild.builds.begin() + j);
@@ -126,17 +126,17 @@ void BuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 			}
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Move the teambuild down in the list");
 			ImGui::SameLine();
-			if (ImGui::SmallButton("Delete")) {
-				ImGui::OpenPopup("Delete Teambuild?");
+			if (ImGui::SmallButton("删除")) {
+				ImGui::OpenPopup("删除整团的技能样本?");
 			}
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete the teambuild");
 			ImGui::SameLine(ImGui::GetWindowContentRegionWidth() * 0.6f);
-			if (ImGui::Button("Close", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.4f, 0))) {
+			if (ImGui::Button("关闭", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.4f, 0))) {
 				tbuild.edit_open = false;
 			}
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Close this window");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("关闭此窗口");
 
-			if (ImGui::BeginPopupModal("Delete Teambuild?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+			if (ImGui::BeginPopupModal("删除整团的技能样本?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 				ImGui::Text("Are you sure?\nThis operation cannot be undone.\n\n");
 				if (ImGui::Button("OK", ImVec2(120, 0))) {
 					teambuilds.erase(teambuilds.begin() + i);
@@ -144,7 +144,7 @@ void BuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button("Cancel", ImVec2(120, 0))) {
+				if (ImGui::Button("取消", ImVec2(120, 0))) {
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::EndPopup();
@@ -256,7 +256,7 @@ bool BuildsWindow::MoveOldBuilds(CSimpleIni* ini) {
 	for (CSimpleIni::Entry& oldentry : oldentries) {
 		const char* section = oldentry.pItem;
 		if (strncmp(section, "builds", 6) == 0) {
-			int count = ini->GetLongValue(section, "count", 12);
+			int count = ini->GetLongValue(section, "个数统计", 12);
 			teambuilds.push_back(TeamBuild(ini->GetValue(section, "buildname", "")));
 			TeamBuild& tbuild = teambuilds.back();
 			tbuild.show_numbers = ini->GetBoolValue(section, "showNumbers", true);
@@ -295,7 +295,7 @@ void BuildsWindow::LoadFromFile() {
 	inifile->GetAllSections(entries);
 	for (CSimpleIni::Entry& entry : entries) {
 		const char* section = entry.pItem;
-		int count = inifile->GetLongValue(section, "count", 12);
+		int count = inifile->GetLongValue(section, "个数统计", 12);
 		teambuilds.push_back(TeamBuild(inifile->GetValue(section, "buildname", "")));
 		TeamBuild& tbuild = teambuilds.back();
 		tbuild.show_numbers = inifile->GetBoolValue(section, "showNumbers", true);
@@ -327,7 +327,7 @@ void BuildsWindow::SaveToFile() {
 			snprintf(section, 16, "builds%03d", i);
 			inifile->SetValue(section, "buildname", tbuild.name);
 			inifile->SetBoolValue(section, "showNumbers", tbuild.show_numbers);
-			inifile->SetLongValue(section, "count", tbuild.builds.size());
+			inifile->SetLongValue(section, "个数统计", tbuild.builds.size());
 			for (unsigned int j = 0; j < tbuild.builds.size(); ++j) {
 				const Build& build = tbuild.builds[j];
 				char namekey[16];

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Hotkeys.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -122,15 +122,15 @@ void TBHotkey::Draw(Op* op) {
 		ImGui::SameLine();
 		static LONG newkey = 0;
 		char keybuf2[128];
-		snprintf(keybuf2, 128, "Hotkey: %s", keybuf);
+		snprintf(keybuf2, 128, "快键: %s", keybuf);
 		if (ImGui::Button(keybuf2, ImVec2(-70.0f, 0))) {
-			ImGui::OpenPopup("Select Hotkey");
+			ImGui::OpenPopup("选择快键");
 			newkey = 0;
 		}
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Click to change hotkey");
-		if (ImGui::BeginPopup("Select Hotkey")) {
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("击此以重配快键");
+		if (ImGui::BeginPopup("选择快键")) {
 			*op = Op_BlockInput;
-			ImGui::Text("Press key");
+			ImGui::Text("按键");
 			int newmod = 0;
 			if (ImGui::GetIO().KeyCtrl) newmod |= ModKey_Control;
 			if (ImGui::GetIO().KeyAlt) newmod |= ModKey_Alt;
@@ -158,14 +158,14 @@ void TBHotkey::Draw(Op* op) {
 			char newkey_buf[256];
 			ModKeyName(newkey_buf, 256, newmod, newkey);
 			ImGui::Text("%s", newkey_buf);
-			if (ImGui::Button("Cancel", ImVec2(-1.0f, 0))) ImGui::CloseCurrentPopup();
+			if (ImGui::Button("取消", ImVec2(-1.0f, 0))) ImGui::CloseCurrentPopup();
 			ImGui::EndPopup();
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Run", ImVec2(70.0f, 0.0f))) {
 			Execute();
 		}
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Execute the hotkey now");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("即刻触发快键");
 
 		// === Move and delete buttons ===
 		if (ImGui::Button("Move Up", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.0f, 0))) {
@@ -180,11 +180,11 @@ void TBHotkey::Draw(Op* op) {
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Move the hotkey down in the list");
 		ImGui::SameLine();
-		if (ImGui::Button("Delete", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.0f, 0))) {
-			ImGui::OpenPopup("Delete Hotkey?");
+		if (ImGui::Button("删除", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.0f, 0))) {
+			ImGui::OpenPopup("删除快键?");
 		}
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete the hotkey");
-		if (ImGui::BeginPopupModal("Delete Hotkey?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("删除快键");
+		if (ImGui::BeginPopupModal("删除快键?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 			ImGui::Text("Are you sure?\nThis operation cannot be undone\n\n", Name());
 			if (ImGui::Button("OK", ImVec2(120, 0))) {
 				*op = Op_Delete;
@@ -192,7 +192,7 @@ void TBHotkey::Draw(Op* op) {
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Cancel", ImVec2(120, 0))) {
+			if (ImGui::Button("取消", ImVec2(120, 0))) {
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::EndPopup();
@@ -205,14 +205,14 @@ void TBHotkey::Draw(Op* op) {
 HotkeySendChat::HotkeySendChat(CSimpleIni* ini, const char* section) 
 	: TBHotkey(ini, section) {
 	strcpy_s(message, ini ? ini->GetValue(section, "msg", "") : "");
-	channel = ini ? ini->GetValue(section, "channel", "/")[0] : '/';
+	channel = ini ? ini->GetValue(section, "频道", "/")[0] : '/';
 }
 void HotkeySendChat::Save(CSimpleIni* ini, const char* section) const {
 	TBHotkey::Save(ini, section);
 	ini->SetValue(section, "msg", message);
 	char buf[8];
 	snprintf(buf, 8, "%c", channel);
-	ini->SetValue(section, "channel", buf);
+	ini->SetValue(section, "频道", buf);
 }
 void HotkeySendChat::Description(char* buf, int bufsz) const {
 	snprintf(buf, bufsz, "Send chat '%c%s'", channel, message);
@@ -230,14 +230,14 @@ void HotkeySendChat::Draw() {
 	}
 	static const char* channels[] = {
 		"/ Commands",
-		"! All",
-		"@ Guild",
-		"# Group",
-		"$ Trade",
-		"% Alliance",
+		"! 地区频道",
+		"@ 公会频道",
+		"# 队伍频道",
+		"$ 交易频道",
+		"% 同盟频道",
 		"\" Whisper"
 	};
-	if (ImGui::Combo("Channel", &index, channels, 7)) {
+	if (ImGui::Combo("频道", &index, channels, 7)) {
 		switch (index) {
 		case 0: channel = '/'; break;
 		case 1: channel = '!'; break;
@@ -293,7 +293,7 @@ void HotkeyUseItem::Execute() {
 		if (name[0] == '\0') {
 			Log::Info("Item #%d not found!", item_id);
 		} else {
-			Log::Info("%s not found!", name);
+			Log::Info("%s 失寻!", name);
 		}
 	}
 }
@@ -301,9 +301,9 @@ void HotkeyUseItem::Execute() {
 bool HotkeyDropUseBuff::GetText(void* data, int idx, const char** out_text) {
 	static char other_buf[64];
 	switch ((SkillIndex)idx) {
-	case Recall: *out_text = "Recall"; break;
+	case Recall: *out_text = "回归"; break;
 	case UA: *out_text = "UA"; break;
-	case HolyVeil: *out_text = "Holy Veil"; break;
+	case HolyVeil: *out_text = "神圣遮罩"; break;
 	default:
 		snprintf(other_buf, 64, "Skill#%d", (int)data);
 		*out_text = other_buf;
@@ -321,11 +321,11 @@ HotkeyDropUseBuff::SkillIndex HotkeyDropUseBuff::GetIndex() const {
 }
 HotkeyDropUseBuff::HotkeyDropUseBuff(CSimpleIni* ini, const char* section) : TBHotkey(ini, section) {
 	id = ini ? (GW::Constants::SkillID)ini->GetLongValue(
-		section, "SkillID", (long)GW::Constants::SkillID::Recall) : GW::Constants::SkillID::Recall;
+		section, "技能号", (long)GW::Constants::SkillID::Recall) : GW::Constants::SkillID::Recall;
 }
 void HotkeyDropUseBuff::Save(CSimpleIni* ini, const char* section) const {
 	TBHotkey::Save(ini, section);
-	ini->SetLongValue(section, "SkillID", (long)id);
+	ini->SetLongValue(section, "技能号", (long)id);
 }
 void HotkeyDropUseBuff::Description(char* buf, int bufsz) const {
 	const char* skillname;
@@ -334,7 +334,7 @@ void HotkeyDropUseBuff::Description(char* buf, int bufsz) const {
 }
 void HotkeyDropUseBuff::Draw() {
 	SkillIndex index = GetIndex();
-	if (ImGui::Combo("Skill", (int*)&index, "Recall\0Unyielding Aura\0Holy Veil\0Other", 4)) {
+	if (ImGui::Combo("Skill", (int*)&index, "回归\0坚毅灵气\0神圣遮罩\0其他", 4)) {
 		switch (index) {
 		case HotkeyDropUseBuff::Recall: id = GW::Constants::SkillID::Recall; break;
 		case HotkeyDropUseBuff::UA: id = GW::Constants::SkillID::Unyielding_Aura; break;
@@ -365,7 +365,7 @@ void HotkeyDropUseBuff::Execute() {
 bool HotkeyToggle::GetText(void*, int idx, const char** out_text) {
 	switch ((Toggle)idx) {
 	case Clicker: *out_text = "Clicker"; return true;
-	case Pcons: *out_text = "Pcons"; return true;
+	case Pcons: *out_text = "补品"; return true;
 	case CoinDrop: *out_text = "Coin Drop"; return true;
 	default: return false;
 	}
@@ -390,7 +390,7 @@ void HotkeyToggle::Execute() {
 	switch (target) {
 	case HotkeyToggle::Clicker:
 		active = HotkeysWindow::Instance().ToggleClicker();
-		Log::Info("Clicker is %s", active ? "active" : "disabled");
+		Log::Info("Clicker is %s", active ? "active" : "已关闭");
 		break;
 	case HotkeyToggle::Pcons:
 		PconsWindow::Instance().ToggleEnable();
@@ -398,18 +398,18 @@ void HotkeyToggle::Execute() {
 		break;
 	case HotkeyToggle::CoinDrop:
 		active = HotkeysWindow::Instance().ToggleCoinDrop();
-		Log::Info("Coin dropper is %s", active ? "active" : "disabled");
+		Log::Info("Coin dropper is %s", active ? "active" : "已关闭");
 		break;
 	}
 }
 
 bool HotkeyAction::GetText(void*, int idx, const char** out_text) {
 	switch ((Action)idx) {
-	case OpenXunlaiChest: *out_text = "Open Xunlai Chest"; return true;
-	case OpenLockedChest: *out_text = "Open Locked Chest"; return true;
+	case OpenXunlaiChest: *out_text = "打开桑莱保险箱"; return true;
+	case OpenLockedChest: *out_text = "打开锁住的宝箱"; return true;
 	case DropGoldCoin: *out_text = "Drop Gold Coin"; return true;
-	case ReapplyTitle: *out_text = "Reapply appropriate Title"; return true;
-	case EnterChallenge: *out_text = "Enter Challenge"; return true;
+	case ReapplyTitle: *out_text = "重新展示相关头衔"; return true;
+	case EnterChallenge: *out_text = "进入挑战任务"; return true;
 	default: return false;
 	}
 }
@@ -603,23 +603,23 @@ void HotkeyTarget::Execute() {
 HotkeyMove::HotkeyMove(CSimpleIni* ini, const char* section) : TBHotkey(ini, section) {
 	x = ini ? (float)ini->GetDoubleValue(section, "x", 0.0) : 0.0f;
 	y = ini ? (float)ini->GetDoubleValue(section, "y", 0.0) : 0.0f;
-	range = ini ? (float)ini->GetDoubleValue(section, "distance", 5000.0f) : 5000.0f;
-	mapid = ini ? ini->GetLongValue(section, "mapid", 0) : 0;
+	range = ini ? (float)ini->GetDoubleValue(section, "距离", 5000.0f) : 5000.0f;
+	mapid = ini ? ini->GetLongValue(section, "地图号", 0) : 0;
 	strcpy_s(name, ini ? ini->GetValue(section, "name", "") : "");
 }
 void HotkeyMove::Save(CSimpleIni* ini, const char* section) const {
 	TBHotkey::Save(ini, section);
 	ini->SetDoubleValue(section, "x", x);
 	ini->SetDoubleValue(section, "y", y);
-	ini->SetDoubleValue(section, "distance", range);
-	ini->SetLongValue(section, "mapid", mapid);
+	ini->SetDoubleValue(section, "距离", range);
+	ini->SetLongValue(section, "地图号", mapid);
 	ini->SetValue(section, "name", name);
 }
 void HotkeyMove::Description(char* buf, int bufsz) const {
 	if (name[0] == '\0') {
-		snprintf(buf, bufsz, "Move to (%.0f, %.0f)", x, y);
+		snprintf(buf, bufsz, "前往坐标 (%.0f, %.0f)", x, y);
 	} else {
-		snprintf(buf, bufsz, "Move to %s", name);
+		snprintf(buf, bufsz, "前往 %s", name);
 	}
 }
 void HotkeyMove::Draw() {
@@ -640,9 +640,9 @@ void HotkeyMove::Execute() {
 	if (range != 0 && dist > range) return;
 	GW::Agents::Move(x, y);
 	if (name[0] == '\0') {
-		Log::Info("Moving to (%.0f, %.0f)", x, y);
+		Log::Info("正在前往坐标 (%.0f, %.0f)", x, y);
 	} else {
-		Log::Info("Moving to %s", name);
+		Log::Info("正在前往 %s", name);
 	}
 }
 
@@ -670,7 +670,7 @@ void HotkeyDialog::Execute() {
 	if (isLoading()) return;
 	if (id == 0) return;
 	GW::Agents::SendDialog(id);
-	Log::Info("Sent dialog %s (%d)", name, id);
+	Log::Info("已发令码 %s (%d)", name, id);
 }
 
 bool HotkeyPingBuild::GetText(void*, int idx, const char** out_text) {
@@ -679,11 +679,11 @@ bool HotkeyPingBuild::GetText(void*, int idx, const char** out_text) {
 	return true;
 }
 HotkeyPingBuild::HotkeyPingBuild(CSimpleIni* ini, const char* section) : TBHotkey(ini, section) {
-	index = ini ? ini->GetLongValue(section, "BuildIndex", 0) : 0;
+	index = ini ? ini->GetLongValue(section, "样本索引号", 0) : 0;
 }
 void HotkeyPingBuild::Save(CSimpleIni* ini, const char* section) const {
 	TBHotkey::Save(ini, section);
-	ini->SetLongValue(section, "BuildIndex", index);
+	ini->SetLongValue(section, "样本索引号", index);
 }
 void HotkeyPingBuild::Description(char* buf, int bufsz) const {
 	const char* buildname = BuildsWindow::Instance().BuildName(index);
@@ -691,7 +691,7 @@ void HotkeyPingBuild::Description(char* buf, int bufsz) const {
 	snprintf(buf, bufsz, "Ping build '%s'", buildname);
 }
 void HotkeyPingBuild::Draw() {
-	if (ImGui::Combo("Build", &index, GetText, nullptr, BuildsWindow::Instance().BuildCount())) hotkeys_changed = true;
+	if (ImGui::Combo("样本", &index, GetText, nullptr, BuildsWindow::Instance().BuildCount())) hotkeys_changed = true;
 }
 void HotkeyPingBuild::Execute() {
 	if (isLoading()) return;
@@ -705,11 +705,11 @@ bool HotkeyHeroTeamBuild::GetText(void*, int idx, const char** out_text) {
 	return true;
 }
 HotkeyHeroTeamBuild::HotkeyHeroTeamBuild(CSimpleIni* ini, const char* section) : TBHotkey(ini, section) {
-	index = ini ? ini->GetLongValue(section, "BuildIndex", 0) : 0;
+	index = ini ? ini->GetLongValue(section, "样本索引号", 0) : 0;
 }
 void HotkeyHeroTeamBuild::Save(CSimpleIni* ini, const char* section) const {
 	TBHotkey::Save(ini, section);
-	ini->SetLongValue(section, "BuildIndex", index);
+	ini->SetLongValue(section, "样本索引号", index);
 }
 void HotkeyHeroTeamBuild::Description(char* buf, int bufsz) const {
 	const char* buildname = HeroBuildsWindow::Instance().BuildName(index);
@@ -717,7 +717,7 @@ void HotkeyHeroTeamBuild::Description(char* buf, int bufsz) const {
 	snprintf(buf, bufsz, "Load Team Hero Build '%s'", buildname);
 }
 void HotkeyHeroTeamBuild::Draw() {
-	if (ImGui::Combo("Build", &index, GetText, nullptr, HeroBuildsWindow::Instance().BuildCount())) hotkeys_changed = true;
+	if (ImGui::Combo("样本", &index, GetText, nullptr, HeroBuildsWindow::Instance().BuildCount())) hotkeys_changed = true;
 }
 void HotkeyHeroTeamBuild::Execute() {
 	if (isLoading()) return;

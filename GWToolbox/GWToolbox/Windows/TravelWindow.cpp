@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "TravelWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -43,11 +43,11 @@ void TravelWindow::Draw(IDirect3DDevice9* pDevice) {
 		ImGui::SetNextWindowPosCenter(ImGuiSetCond_FirstUseEver);
 		ImGui::SetNextWindowSize(ImVec2(300, 0), ImGuiSetCond_FirstUseEver);
 		if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
-			TravelButton("Ascalon City", 0, GW::Constants::MapID::Ascalon_City_pre_searing);
-			TravelButton("Ashford Abbey", 1, GW::Constants::MapID::Ashford_Abbey_outpost);
-			TravelButton("Foible's Fair", 0, GW::Constants::MapID::Foibles_Fair_outpost);
-			TravelButton("Fort Ranik", 1, GW::Constants::MapID::Fort_Ranik_pre_Searing_outpost);
-			TravelButton("The Barradin Estate", 0, GW::Constants::MapID::The_Barradin_Estate_outpost);
+			TravelButton("阿斯卡隆城", 0, GW::Constants::MapID::Ascalon_City_pre_searing);
+			TravelButton("灰色浅滩修道院", 1, GW::Constants::MapID::Ashford_Abbey_outpost);
+			TravelButton("佛伊伯市集", 0, GW::Constants::MapID::Foibles_Fair_outpost);
+			TravelButton("瑞尼克要塞", 1, GW::Constants::MapID::Fort_Ranik_pre_Searing_outpost);
+			TravelButton("巴拉丁庄园", 0, GW::Constants::MapID::The_Barradin_Estate_outpost);
 		}
 		ImGui::End();
 	} else {
@@ -56,7 +56,7 @@ void TravelWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
 			ImGui::PushItemWidth(-1.0f);
 			static int travelto_index = -1;
-			if (ImGui::MyCombo("travelto", "Travel To...", &travelto_index, outpost_name_array_getter, nullptr, N_OUTPOSTS)) {
+			if (ImGui::MyCombo("travelto", "前往...", &travelto_index, outpost_name_array_getter, nullptr, N_OUTPOSTS)) {
 				GW::Constants::MapID id = IndexToOutpostID(travelto_index);
 				TravelWindow::Travel(id, district, district_number);
 				travelto_index = -1;
@@ -64,20 +64,20 @@ void TravelWindow::Draw(IDirect3DDevice9* pDevice) {
 			}
 
 			static int district_index = 0;
-			static const char* const district_words[] = { "Current District",
-				"International",
-				"American",
-				"American District 1",
-				"Europe English",
-				"Europe French",
-				"Europe German",
-				"Europe Italian",
-				"Europe Spanish",
-				"Europe Polish",
-				"Europe Russian",
-				"Asian Korean",
-				"Asia Chinese",
-				"Asia Japanese", };
+			static const char* const district_words[] = { "现有区域",
+				"国际区",
+				"北美洲",
+				"北美一区",
+				"欧洲 英语",
+				"欧洲 法语",
+				"欧洲 德语",
+				"欧洲 意大利语",
+				"欧洲 西班牙语",
+				"欧洲 波兰语",
+				"欧洲 俄罗斯语",
+				"亚洲 朝文",
+				"亚洲 中文",
+				"亚洲 日文", };
 			if (ImGui::Combo("###district", &district_index, district_words, N_DISTRICTS)) {
 				district_number = 0;
 				switch (district_index) {
@@ -106,12 +106,12 @@ void TravelWindow::Draw(IDirect3DDevice9* pDevice) {
 
 			TravelButton("ToA", 0, GW::Constants::MapID::Temple_of_the_Ages);
 			TravelButton("DoA", 1, GW::Constants::MapID::Domain_of_Anguish);
-			TravelButton("Kamadan", 0, GW::Constants::MapID::Kamadan_Jewel_of_Istan_outpost);
+			TravelButton("卡玛丹", 0, GW::Constants::MapID::Kamadan_Jewel_of_Istan_outpost);
 			TravelButton("Embark", 1, GW::Constants::MapID::Embark_Beach);
 			TravelButton("Vlox's", 0, GW::Constants::MapID::Vloxs_Falls);
 			TravelButton("Gadd's", 1, GW::Constants::MapID::Gadds_Encampment_outpost);
-			// TravelButton("Urgoz", 0, GW::Constants::MapID::Urgozs_Warren);
-			// TravelButton("Deep", 1, GW::Constants::MapID::The_Deep);
+			// TravelButton("尔果", 0, GW::Constants::MapID::Urgozs_Warren);
+			// TravelButton("深处", 1, GW::Constants::MapID::The_Deep);
 
 			for (int i = 0; i < fav_count; ++i) {
 				ImGui::PushID(i);
@@ -438,186 +438,186 @@ void TravelWindow::Travel(GW::Constants::MapID map_id,
 namespace {
 	bool outpost_name_array_getter(void* data, int idx, const char** out_text) {
 		switch (idx) {
-		case 0: *out_text = "Abaddon's Gate";				break;
-		case 1: *out_text = "Abaddon's Mouth";				break;
-		case 2: *out_text = "Altrumm Ruins";				break;
-		case 3: *out_text = "Amatz Basin";					break;
-		case 4: *out_text = "Amnoon Oasis, The";			break;
-		case 5: *out_text = "Arborstone";					break;
-		case 6: *out_text = "Ascalon City";					break;
-		case 7: *out_text = "Aspenwood Gate (Kurzick)";		break;
-		case 8: *out_text = "Aspenwood Gate (Luxon)";		break;
-		case 9: *out_text = "Astralarium, The";				break;
-		case 10: *out_text = "Augury Rock";					break;
-		case 11: *out_text = "Aurios Mines, The";			break;
-		case 12: *out_text = "Aurora Glade";				break;
-		case 13: *out_text = "Bai Paasu Reach";				break;
-		case 14: *out_text = "Basalt Grotto";				break;
-		case 15: *out_text = "Beacon's Perch";				break;
-		case 16: *out_text = "Beetletun";					break;
-		case 17: *out_text = "Beknur Harbor";				break;
-		case 18: *out_text = "Bergen Hot Springs";			break;
-		case 19: *out_text = "Blacktide Den";				break;
-		case 20: *out_text = "Bloodstone Fen";				break;
-		case 21: *out_text = "Bone Palace";					break;
-		case 22: *out_text = "Boreal Station";				break;
-		case 23: *out_text = "Boreas Seabed";				break;
-		case 24: *out_text = "Borlis Pass";					break;
-		case 25: *out_text = "Brauer Academy";				break;
-		case 26: *out_text = "Breaker Hollow";				break;
-		case 27: *out_text = "Camp Hojanu";					break;
-		case 28: *out_text = "Camp Rankor";					break;
-		case 29: *out_text = "Cavalon";						break;
-		case 30: *out_text = "Central Transfer Chamber";	break;
-		case 31: *out_text = "Chahbek Village";				break;
-		case 32: *out_text = "Champion's Dawn";				break;
-		case 33: *out_text = "Chantry of Secrets";			break;
-		case 34: *out_text = "Codex Arena";					break;
-		case 35: *out_text = "Consulate Docks";				break;
-		case 36: *out_text = "Copperhammer Mines";			break;
-		case 37: *out_text = "D'Alessio Seaboard";			break;
-		case 38: *out_text = "Dajkah Inlet";				break;
-		case 39: *out_text = "Dasha Vestibule";				break;
-		case 40: *out_text = "Deep, The";					break;
-		case 41: *out_text = "Deldrimor War Camp";			break;
-		case 42: *out_text = "Destiny's Gorge";				break;
-		case 43: *out_text = "Divinity Coast";				break;
-		case 44: *out_text = "Doomlore Shrine";				break;
-		case 45: *out_text = "Dragon's Lair, The";			break;
-		case 46: *out_text = "Dragon's Throat";				break;
-		case 47: *out_text = "Droknar's Forge";				break;
-		case 48: *out_text = "Druid's Overlook";			break;
-		case 49: *out_text = "Dunes of Despair";			break;
-		case 50: *out_text = "Durheim Archives";			break;
-		case 51: *out_text = "Dzagonur Bastion";			break;
-		case 52: *out_text = "Elona Reach";					break;
+		case 0: *out_text = "亚霸顿之门";				break;
+		case 1: *out_text = "地狱隘口";				break;
+		case 2: *out_text = "奥楚兰废墟";				break;
+		case 3: *out_text = "亚马兹盆地";					break;
+		case 4: *out_text = "安奴绿洲";			break;
+		case 5: *out_text = "亭石";					break;
+		case 6: *out_text = "阿斯卡隆城";					break;
+		case 7: *out_text = "杨木大门 (库兹柯)";		break;
+		case 8: *out_text = "杨木大门 (勒克森)";		break;
+		case 9: *out_text = "亚斯特拉利姆";				break;
+		case 10: *out_text = "占卜之石";					break;
+		case 11: *out_text = "奥里欧斯矿坑";			break;
+		case 12: *out_text = "欧若拉林地";				break;
+		case 13: *out_text = "拜巴苏区域";				break;
+		case 14: *out_text = "玄武岩石穴";				break;
+		case 15: *out_text = "毕肯高地";				break;
+		case 16: *out_text = "甲虫镇";					break;
+		case 17: *out_text = "别克诺港";				break;
+		case 18: *out_text = "卑尔根温泉";			break;
+		case 19: *out_text = "黑潮之穴";				break;
+		case 20: *out_text = "血石沼泽";				break;
+		case 21: *out_text = "白骨宫殿";					break;
+		case 22: *out_text = "北极驻地";				break;
+		case 23: *out_text = "风神海床";				break;
+		case 24: *out_text = "柏里斯通道";					break;
+		case 25: *out_text = "巴尔学院";				break;
+		case 26: *out_text = "断崖谷";				break;
+		case 27: *out_text = "何加努营地";					break;
+		case 28: *out_text = "蓝口营地";					break;
+		case 29: *out_text = "卡瓦隆";						break;
+		case 30: *out_text = "中央转送室";	break;
+		case 31: *out_text = "夏贝克村庄";				break;
+		case 32: *out_text = "勇士曙光";				break;
+		case 33: *out_text = "隐秘教堂";			break;
+		case 34: *out_text = "Codex 竞技场";					break;
+		case 35: *out_text = "领事馆码头";				break;
+		case 36: *out_text = "铜锤矿坑";			break;
+		case 37: *out_text = "达雷西海滨";			break;
+		case 38: *out_text = "达卡港";				break;
+		case 39: *out_text = "达沙走廊";				break;
+		case 40: *out_text = "深处";					break;
+		case 41: *out_text = "戴尔狄摩兵营";			break;
+		case 42: *out_text = "命运峡谷";				break;
+		case 43: *out_text = "神圣海岸";				break;
+		case 44: *out_text = "末日传说神殿";				break;
+		case 45: *out_text = "龙穴";			break;
+		case 46: *out_text = "龙喉";				break;
+		case 47: *out_text = "卓克纳熔炉";				break;
+		case 48: *out_text = "德鲁伊高地";			break;
+		case 49: *out_text = "绝望沙丘";			break;
+		case 50: *out_text = "杜汉姆卷藏室";			break;
+		case 51: *out_text = "萨岗诺棱堡";			break;
+		case 52: *out_text = "伊洛那流域";					break;
 		case 53: *out_text = "Embark Beach";				break;
-		case 54: *out_text = "Ember Light Camp";			break;
-		case 55: *out_text = "Eredon Terrace";				break;
-		case 56: *out_text = "Eternal Grove, The";			break;
-		case 57: *out_text = "Eye of the North";			break;
-		case 58: *out_text = "Fishermen's Haven";			break;
-		case 59: *out_text = "Fort Aspenwood (Kurzick)";		break;
-		case 60: *out_text = "Fort Aspenwood (Luxon)";		break;
-		case 61: *out_text = "Fort Ranik";					break;
-		case 62: *out_text = "Frontier Gate";				break;
-		case 63: *out_text = "Frost Gate, The";				break;
-		case 64: *out_text = "Gadd's Encampment";			break;
-		case 65: *out_text = "Gate of Anguish";				break;
-		case 66: *out_text = "Gate of Desolation";			break;
-		case 67: *out_text = "Gate of Fear";				break;
-		case 68: *out_text = "Gate of Madness";				break;
-		case 69: *out_text = "Gate of Pain";				break;
-		case 70: *out_text = "Gate of Secrets";				break;
-		case 71: *out_text = "Gate of the Nightfallen Lands"; break;
-		case 72: *out_text = "Gate of Torment";				break;
-		case 73: *out_text = "Gates of Kryta";				break;
-		case 74: *out_text = "Grand Court of Sebelkeh";		break;
-		case 75: *out_text = "Granite Citadel, The";		break;
-		case 76: *out_text = "Great Northern Wall, The";	break;
-		case 77: *out_text = "Great Temple of Balthazar";	break;
-		case 78: *out_text = "Grendich Courthouse";			break;
-		case 79: *out_text = "Gunnar's Hold";				break;
-		case 80: *out_text = "Gyala Hatchery";				break;
-		case 81: *out_text = "Harvest Temple";				break;
-		case 82: *out_text = "Hell's Precipice";			break;
-		case 83: *out_text = "Henge of Denravi";			break;
-		case 84: *out_text = "Heroes' Ascent";				break;
-		case 85: *out_text = "Heroes' Audience";			break;
-		case 86: *out_text = "Honur Hill";					break;
-		case 87: *out_text = "House zu Heltzer";			break;
-		case 88: *out_text = "Ice Caves of Sorrow";			break;
-		case 89: *out_text = "Ice Tooth Cave";				break;
-		case 90: *out_text = "Imperial Sanctum";			break;
-		case 91: *out_text = "Iron Mines of Moladune";		break;
-		case 92: *out_text = "Jade Flats (Kurzick)";			break;
-		case 93: *out_text = "Jade Flats (Luxon)";			break;
-		case 94: *out_text = "Jade Quarry (Kurzick), The";	break;
-		case 95: *out_text = "Jade Quarry (Luxon), The";		break;
-		case 96: *out_text = "Jennur's Horde";				break;
-		case 97: *out_text = "Jokanur Diggings";			break;
-		case 98: *out_text = "Kaineng Center";				break;
-		case 99: *out_text = "Kamadan, Jewel of Istan";		break;
-		case 100: *out_text = "Kodash Bazaar, The";			break;
-		case 101: *out_text = "Kodlonu Hamlet";				break;
-		case 102: *out_text = "Kodonur Crossroads";			break;
-		case 103: *out_text = "Lair of the Forgotten";		break;
-		case 104: *out_text = "Leviathan Pits";				break;
-		case 105: *out_text = "Lion's Arch";				break;
-		case 106: *out_text = "Longeye's Ledge";			break;
-		case 107: *out_text = "Lutgardis Conservatory";		break;
-		case 108: *out_text = "Maatu Keep";					break;
-		case 109: *out_text = "Maguuma Stade";				break;
-		case 110: *out_text = "Marhan's Grotto";			break;
-		case 111: *out_text = "Marketplace, The";			break;
-		case 112: *out_text = "Mihanu Township";			break;
-		case 113: *out_text = "Minister Cho's Estate";		break;
-		case 114: *out_text = "Moddok Crevice";				break;
-		case 115: *out_text = "Mouth of Torment, The";		break;
-		case 116: *out_text = "Nahpui Quarter";				break;
-		case 117: *out_text = "Nolani Academy";				break;
-		case 118: *out_text = "Nundu Bay";					break;
-		case 119: *out_text = "Olafstead";					break;
-		case 120: *out_text = "Piken Square";				break;
-		case 121: *out_text = "Pogahn Passage";				break;
-		case 122: *out_text = "Port Sledge";				break;
-		case 123: *out_text = "Quarrel Falls";				break;
-		case 124: *out_text = "Raisu Palace";				break;
-		case 125: *out_text = "Ran Musu Gardens";			break;
-		case 126: *out_text = "Random Arenas";				break;
-		case 127: *out_text = "Rata Sum";					break;
-		case 128: *out_text = "Remains of Sahlahja";		break;
-		case 129: *out_text = "Rilohn Refuge";				break;
-		case 130: *out_text = "Ring of Fire";				break;
-		case 131: *out_text = "Riverside Province";			break;
-		case 132: *out_text = "Ruins of Morah";				break;
-		case 133: *out_text = "Ruins of Surmia";			break;
-		case 134: *out_text = "Saint Anjeka's Shrine";		break;
-		case 135: *out_text = "Sanctum Cay";				break;
-		case 136: *out_text = "Sardelac Sanitarium";		break;
-		case 137: *out_text = "Seafarer's Rest";			break;
-		case 138: *out_text = "Seeker's Passage";			break;
-		case 139: *out_text = "Seitung Harbor";				break;
-		case 140: *out_text = "Senji's Corner";				break;
-		case 141: *out_text = "Serenity Temple";			break;
-		case 142: *out_text = "Shadow Nexus, The";			break;
-		case 143: *out_text = "Shing Jea Arena";			break;
-		case 144: *out_text = "Shing Jea Monastery";		break;
-		case 145: *out_text = "Sifhalla";					break;
-		case 146: *out_text = "Sunjiang District";			break;
-		case 147: *out_text = "Sunspear Arena";				break;
-		case 148: *out_text = "Sunspear Great Hall";		break;
-		case 149: *out_text = "Sunspear Sanctuary";			break;
-		case 150: *out_text = "Tahnnakai Temple";			break;
-		case 151: *out_text = "Tanglewood Copse";			break;
-		case 152: *out_text = "Tarnished Haven";			break;
-		case 153: *out_text = "Temple of the Ages";			break;
-		case 154: *out_text = "Thirsty River";				break;
-		case 155: *out_text = "Thunderhead Keep";			break;
-		case 156: *out_text = "Tihark Orchard";				break;
-		case 157: *out_text = "Tomb of the Primeval Kings";	break;
-		case 158: *out_text = "Tsumei Village";				break;
-		case 159: *out_text = "Umbral Grotto";				break;
-		case 160: *out_text = "Unwaking Waters (Kurzick)";	break;
-		case 161: *out_text = "Unwaking Waters (Luxon)";		break;
-		case 162: *out_text = "Urgoz's Warren";				break;
-		case 163: *out_text = "Vasburg Armory";				break;
-		case 164: *out_text = "Venta Cemetery";				break;
-		case 165: *out_text = "Ventari's Refuge";			break;
-		case 166: *out_text = "Vizunah Square (Foreign)";	break;
-		case 167: *out_text = "Vizunah Square (Local)";		break;
-		case 168: *out_text = "Vlox's Falls";				break;
-		case 169: *out_text = "Wehhan Terraces";			break;
-		case 170: *out_text = "Wilds, The";					break;
-		case 171: *out_text = "Yahnur Market";				break;
-		case 172: *out_text = "Yak's Bend";					break;
-		case 173: *out_text = "Yohlon Haven";				break;
-		case 174: *out_text = "Zaishen Challenge";			break;
-		case 175: *out_text = "Zaishen Elite";				break;
-		case 176: *out_text = "Zaishen Menagerie";			break;
-		case 177: *out_text = "Zen Daijun";					break;
-		case 178: *out_text = "Zin Ku Corridor";			break;
-		case 179: *out_text = "Zos Shivros Channel";		break;
+		case 54: *out_text = "残火营地";			break;
+		case 55: *out_text = "尔雷登平地";				break;
+		case 56: *out_text = "永恒之林";			break;
+		case 57: *out_text = "极地之眼";			break;
+		case 58: *out_text = "渔人避风港";			break;
+		case 59: *out_text = "杨木要塞 (库兹柯)";		break;
+		case 60: *out_text = "杨木要塞 (勒克森)";		break;
+		case 61: *out_text = "瑞尼克要塞";					break;
+		case 62: *out_text = "边境关所";				break;
+		case 63: *out_text = "寒霜之门";				break;
+		case 64: *out_text = "盖德营地";			break;
+		case 65: *out_text = "悲难之门";				break;
+		case 66: *out_text = "荒芜之地入口";			break;
+		case 67: *out_text = "恐惧之门";				break;
+		case 68: *out_text = "疯狂之门";				break;
+		case 69: *out_text = "惩罚之门";				break;
+		case 70: *out_text = "奥秘之门";				break;
+		case 71: *out_text = "夜蚀暗殒领地之门"; break;
+		case 72: *out_text = "苦痛之门";				break;
+		case 73: *out_text = "科瑞塔关所";				break;
+		case 74: *out_text = "希贝克大公廷";		break;
+		case 75: *out_text = "花岗岩堡垒";		break;
+		case 76: *out_text = "北方长城";	break;
+		case 77: *out_text = "巴萨泽圣殿";	break;
+		case 78: *out_text = "葛兰迪法院";			break;
+		case 79: *out_text = "甘拿的占领地";				break;
+		case 80: *out_text = "盖拉孵化所";				break;
+		case 81: *out_text = "丰收神殿";				break;
+		case 82: *out_text = "地狱悬崖";			break;
+		case 83: *out_text = "丹拉维圣地";			break;
+		case 84: *out_text = "英雄之路";				break;
+		case 85: *out_text = "英雄之痕";			break;
+		case 86: *out_text = "霍奴尔丘陵";					break;
+		case 87: *out_text = "凤荷议院";			break;
+		case 88: *out_text = "悲伤冰谷";			break;
+		case 89: *out_text = "冰牙洞穴";				break;
+		case 90: *out_text = "帝国圣所";			break;
+		case 91: *out_text = "莫拉登矿山";		break;
+		case 92: *out_text = "翡翠浅滩 (库兹柯)";			break;
+		case 93: *out_text = "翡翠浅滩 (勒克森)";			break;
+		case 94: *out_text = "翡翠矿场 (库兹柯)";	break;
+		case 95: *out_text = "翡翠矿场 (勒克森)";		break;
+		case 96: *out_text = "征钠群落";				break;
+		case 97: *out_text = "卓坎诺挖掘点";			break;
+		case 98: *out_text = "凯宁中心";				break;
+		case 99: *out_text = "卡玛丹，艾斯坦之钻";		break;
+		case 100: *out_text = "库丹西市集广场";			break;
+		case 101: *out_text = "克拓奴，哈姆雷特";				break;
+		case 102: *out_text = "科登诺路口";			break;
+		case 103: *out_text = "被遗忘者的巢穴";		break;
+		case 104: *out_text = "利拜亚森矿场";				break;
+		case 105: *out_text = "狮子拱门";				break;
+		case 106: *out_text = "长眼岩脉";			break;
+		case 107: *out_text = "路嘉帝斯温室";		break;
+		case 108: *out_text = "麻都堡垒";					break;
+		case 109: *out_text = "梅古玛丛林";				break;
+		case 110: *out_text = "马翰洞穴";			break;
+		case 111: *out_text = "市集";			break;
+		case 112: *out_text = "米哈努小镇";			break;
+		case 113: *out_text = "周大臣庄园";		break;
+		case 114: *out_text = "摩多克裂缝";				break;
+		case 115: *out_text = "苦痛之地隘口";		break;
+		case 116: *out_text = "纳普区";				break;
+		case 117: *out_text = "若拉尼学院";				break;
+		case 118: *out_text = "纳度湾";					break;
+		case 119: *out_text = "欧拉夫之地";					break;
+		case 120: *out_text = "派肯广场";				break;
+		case 121: *out_text = "波甘驿站";				break;
+		case 122: *out_text = "雪橇港";				break;
+		case 123: *out_text = "怨言瀑布";				break;
+		case 124: *out_text = "莱苏皇宫";				break;
+		case 125: *out_text = "岚穆苏花园";			break;
+		case 126: *out_text = "随机竞技场";				break;
+		case 127: *out_text = "洛达顶点";					break;
+		case 128: *out_text = "萨拉迦遗址";		break;
+		case 129: *out_text = "里欧恩难民营";				break;
+		case 130: *out_text = "火环群岛";				break;
+		case 131: *out_text = "河畔地带";			break;
+		case 132: *out_text = "摩拉废墟";				break;
+		case 133: *out_text = "苏米亚废墟";			break;
+		case 134: *out_text = "圣者安捷卡的祭坛";		break;
+		case 135: *out_text = "神圣沙滩";				break;
+		case 136: *out_text = "萨德拉克疗养院";		break;
+		case 137: *out_text = "航海者休憩处";			break;
+		case 138: *out_text = "探索者通道";			break;
+		case 139: *out_text = "青函港";				break;
+		case 140: *out_text = "山吉之街";				break;
+		case 141: *out_text = "宁静神殿";			break;
+		case 142: *out_text = "阴郁核心";			break;
+		case 143: *out_text = "星岬竞技场";			break;
+		case 144: *out_text = "星岬寺";		break;
+		case 145: *out_text = "袭哈拉";					break;
+		case 146: *out_text = "孙江行政区";			break;
+		case 147: *out_text = "日戟竞技场";				break;
+		case 148: *out_text = "日戟大会堂";		break;
+		case 149: *out_text = "日戟避难所";			break;
+		case 150: *out_text = "谭纳凯神殿";			break;
+		case 151: *out_text = "谭格梧树林";			break;
+		case 152: *out_text = "灰暗避难所";			break;
+		case 153: *out_text = "世纪神殿";			break;
+		case 154: *out_text = "干枯河流";				break;
+		case 155: *out_text = "雷云要塞";			break;
+		case 156: *out_text = "提亚克林地";				break;
+		case 157: *out_text = "先王之墓";	break;
+		case 158: *out_text = "苏梅村";				break;
+		case 159: *out_text = "阴影石穴";				break;
+		case 160: *out_text = "沉睡之水 (库兹柯)";	break;
+		case 161: *out_text = "沉睡之水 (勒克森)";		break;
+		case 162: *out_text = "尔果的养殖场";				break;
+		case 163: *out_text = "维思伯兵营";				break;
+		case 164: *out_text = "凡特墓地";				break;
+		case 165: *out_text = "凡特里庇护所";			break;
+		case 166: *out_text = "薇茹广场 (外地)";	break;
+		case 167: *out_text = "薇茹广场 (本地)";		break;
+		case 168: *out_text = "弗洛克斯瀑布";				break;
+		case 169: *out_text = "薇恩平台";			break;
+		case 170: *out_text = "荒原";					break;
+		case 171: *out_text = "雅诺尔市集";				break;
+		case 172: *out_text = "牦牛村";					break;
+		case 173: *out_text = "犹朗避难所";				break;
+		case 174: *out_text = "战承挑战赛";			break;
+		case 175: *out_text = "战承精英";				break;
+		case 176: *out_text = "战承动物园";			break;
+		case 177: *out_text = "祯台郡";					break;
+		case 178: *out_text = "辛库走廊";			break;
+		case 179: *out_text = "佐席洛斯水道";		break;
 		default: *out_text = "";
 		}
 		return true;

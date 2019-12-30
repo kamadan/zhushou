@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MaterialsWindow.h"
 
 #include <imgui.h>
@@ -219,14 +219,14 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Essence ===
 		ImGui::Image((ImTextureID)tex_essence, ImVec2(50, 50),
 			ImVec2(4.0f / 64, 9.0f / 64), ImVec2(47.0f / 64, 52.0f / 64));
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Essence of Celerity\nFeathers and Dust");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("敏捷精华\n羽毛 及 闪烁之土");
 		ImGui::SameLine();
 		x = ImGui::GetCursorPosX();
 		y = ImGui::GetCursorPosY();
 		ImGui::Text(GetPrice(Feather, 5.0f, PileofGlitteringDust, 5.0f, 250).c_str());
 		FullConsPriceTooltip();
 		ImGui::SameLine(ImGui::GetWindowWidth() - 100.0f - ImGui::GetStyle().WindowPadding.x);
-		if (ImGui::Button("Price Check##essence", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("估价##essence", ImVec2(100.0f, 0))) {
 			EnqueueQuote(Feather);
 			EnqueueQuote(PileofGlitteringDust);
 		}
@@ -239,7 +239,7 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (qty_essence < 1) qty_essence = 1;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##essence", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("买##essence", ImVec2(100.0f, 0))) {
 			for (int i = 0; i < 5 * qty_essence; ++i) {
 				EnqueuePurchase(Feather);
 				EnqueuePurchase(PileofGlitteringDust);
@@ -250,14 +250,14 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Grail ===
 		ImGui::Image((ImTextureID)tex_grail, ImVec2(50, 50),
 			ImVec2(3.0f / 64, 11.0f / 64), ImVec2(49.0f / 64, 57.0f / 64));
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Grail of Might\nIron and Dust");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("力量圣杯\n铁矿石 及 闪烁之土");
 		ImGui::SameLine();
 		x = ImGui::GetCursorPosX();
 		y = ImGui::GetCursorPosY();
 		ImGui::Text(GetPrice(IronIngot, 5.0f, PileofGlitteringDust, 5.0f, 250).c_str());
 		FullConsPriceTooltip();
 		ImGui::SameLine(ImGui::GetWindowWidth() - 100.0f - ImGui::GetStyle().WindowPadding.x);
-		if (ImGui::Button("Price Check##grail", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("估价##grail", ImVec2(100.0f, 0))) {
 			EnqueueQuote(IronIngot);
 			EnqueueQuote(PileofGlitteringDust);
 		}
@@ -270,7 +270,7 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (qty_grail < 1) qty_grail = 1;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##grail", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("买##grail", ImVec2(100.0f, 0))) {
 			for (int i = 0; i < 5 * qty_grail; ++i) {
 				EnqueuePurchase(IronIngot);
 				EnqueuePurchase(PileofGlitteringDust);
@@ -281,14 +281,14 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Armor ===
 		ImGui::Image((ImTextureID)tex_armor, ImVec2(50, 50),
 			ImVec2(0, 1.0f / 64), ImVec2(59.0f / 64, 60.0f / 64));
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Armor of Salvation\nIron and Bones");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("救赎防具\n铁矿石 及 骨头");
 		ImGui::SameLine();
 		x = ImGui::GetCursorPosX();
 		y = ImGui::GetCursorPosY();
 		ImGui::Text(GetPrice(IronIngot, 5.0f, Bone, 5.0f, 250).c_str());
 		FullConsPriceTooltip();
 		ImGui::SameLine(ImGui::GetWindowWidth() - 100.0f - ImGui::GetStyle().WindowPadding.x);
-		if (ImGui::Button("Price Check##armor", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("估价##armor", ImVec2(100.0f, 0))) {
 			EnqueueQuote(IronIngot);
 			EnqueueQuote(Bone);
 		}
@@ -301,7 +301,7 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (qty_armor < 1) qty_armor = 1;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##armor", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("买##armor", ImVec2(100.0f, 0))) {
 			for (int i = 0; i < 5 * qty_armor; ++i) {
 				EnqueuePurchase(IronIngot);
 				EnqueuePurchase(Bone);
@@ -312,13 +312,13 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Powerstone ===
 		ImGui::Image((ImTextureID)tex_powerstone, ImVec2(50, 50),
 			ImVec2(0, 6.0f / 64), ImVec2(54.0f / 64, 60.0f / 64));
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Powerstone of Courage\nGranite and Dust");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("勇气粉石\n花岗岩石板 及 闪烁之土");
 		ImGui::SameLine();
 		x = ImGui::GetCursorPosX();
 		y = ImGui::GetCursorPosY();
 		ImGui::Text(GetPrice(GraniteSlab, 10.0f, PileofGlitteringDust, 10.0f, 1000).c_str());
 		ImGui::SameLine(ImGui::GetWindowWidth() - 100.0f - ImGui::GetStyle().WindowPadding.x);
-		if (ImGui::Button("Price Check##pstone", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("估价##pstone", ImVec2(100.0f, 0))) {
 			EnqueueQuote(GraniteSlab);
 			EnqueueQuote(PileofGlitteringDust);
 		}
@@ -331,7 +331,7 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (qty_pstone < 1) qty_pstone = 1;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##pstone", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("买##pstone", ImVec2(100.0f, 0))) {
 			for (int i = 0; i < 10 * qty_pstone; ++i) {
 				EnqueuePurchase(GraniteSlab);
 				EnqueuePurchase(PileofGlitteringDust);
@@ -342,13 +342,13 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Res scroll ===
 		ImGui::Image((ImTextureID)tex_resscroll, ImVec2(50, 50),
 			ImVec2(1.0f / 64, 4.0f / 64), ImVec2(56.0f / 64, 59.0f / 64));
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Scroll of Resurrection\nFibers and Bones");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("复活卷轴\n植物纤维 及 骨头");
 		ImGui::SameLine();
 		x = ImGui::GetCursorPosX();
 		y = ImGui::GetCursorPosY();
 		ImGui::Text(GetPrice(PlantFiber, 2.5f, Bone, 2.5f, 250).c_str());
 		ImGui::SameLine(ImGui::GetWindowWidth() - 100.0f - ImGui::GetStyle().WindowPadding.x);
-		if (ImGui::Button("Price Check##resscroll", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("估价##resscroll", ImVec2(100.0f, 0))) {
 			EnqueueQuote(PlantFiber);
 			EnqueueQuote(Bone);
 		}
@@ -361,7 +361,7 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		if (qty_resscroll < 1) qty_resscroll = 1;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##resscroll", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("买##resscroll", ImVec2(100.0f, 0))) {
 			for (int i = 0; i < qty_resscroll; ++i) { // for each scroll
 				int qty = (i % 2 == 0 ? 2 : 3);
 				for (int j = 0; j < qty; ++j) {
@@ -380,17 +380,17 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		static int common_idx = 0;
 		static int common_qty = 1;
 		static const char* common_names[] = {
-			"10 Bolts of Cloth",
-			"10 Bones",
-			"10 Chitin Fragments",
-			"10 Feathers",
-			"10 Granite Slabs",
-			"10 Iron Ingots",
-			"10 Piles of Glittering Dust",
-			"10 Plant Fibers",
-			"10 Scales",
-			"10 Tanned Hide Squares",
-			"10 Wood Planks",
+			"10 布料",
+			"10 骨头",
+			"10 外壳",
+			"10 羽毛",
+			"10 花岗岩石板",
+			"10 铁矿石",
+			"10 闪烁之土",
+			"10 植物纤维",
+			"10 鳞片",
+			"10 褐色兽皮",
+			"10 木材",
 		};
 		ImGui::PushItemWidth(width1);
 		ImGui::Combo("##commoncombo", &common_idx, common_names, 11);
@@ -401,13 +401,13 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		ImGui::PopItemWidth();
 		if (common_qty < 1) common_qty = 1;
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##common", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
+		if (ImGui::Button("买##common", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
 			for (int i = 0; i < common_qty; ++i) {
 				EnqueuePurchase((Material)common_idx);
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::Button("Sell##common", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
+		if (ImGui::Button("卖##common", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
 			for (int i = 0; i < common_qty; ++i) {
 				EnqueueSell((Material)common_idx);
 			}
@@ -416,31 +416,31 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		// === Rare materials ===
 		static int rare_idx = 0;
 		static int rare_qty = 1;
-		static const char* rare_names[] = { "Amber Chunk",
-			"Bolt of Damask",
-			"Bolt of Linen",
-			"Bolt of Silk",
-			"Deldrimor Steel Ingot",
-			"Diamond",
-			"Elonian Leather Square",
-			"Fur Square",
-			"Glob of Ectoplasm",
-			"Jadeite Shard",
-			"Leather Square",
-			"Lump of Charcoal",
-			"Monstrous Claw",
-			"Monstrous Eye",
-			"Monstrous Fang",
-			"Obsidian Shard",
-			"Onyx Gemstone",
-			"Roll of Parchment",
-			"Roll of Vellum",
-			"Ruby",
-			"Sapphire",
-			"Spiritwood Plank",
-			"Steel Ingot",
-			"Tempered Glass Vial",
-			"Vial of Ink"
+		static const char* rare_names[] = { "琥珀",
+			"缎布",
+			"亚麻布",
+			"丝绸",
+			"戴尔狄摩钢铁矿石",
+			"金刚石",
+			"伊洛那皮革",
+			"毛皮",
+			"心灵之玉",
+			"硬玉",
+			"皮革",
+			"结块的木炭",
+			"巨大的爪",
+			"巨大的眼",
+			"巨大尖牙",
+			"黑曜石碎片",
+			"玛瑙宝石",
+			"羊皮纸卷",
+			"牛皮纸卷",
+			"红宝石",
+			"蓝宝石",
+			"心灵之板",
+			"钢铁矿石",
+			"调合后的玻璃瓶",
+			"小瓶墨水"
 		};
 		ImGui::PushItemWidth(width1);
 		ImGui::Combo("##rarecombo", &rare_idx, rare_names, 25);
@@ -451,13 +451,13 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		ImGui::PopItemWidth();
 		if (rare_qty < 1) rare_qty = 1;
 		ImGui::SameLine();
-		if (ImGui::Button("Buy##rare", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
+		if (ImGui::Button("买##rare", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
 			for (int i = 0; i < rare_qty; ++i) {
 				EnqueuePurchase((Material)(rare_idx + AmberChunk));
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::Button("Sell##rare", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
+		if (ImGui::Button("卖##rare", ImVec2(50.0f - ImGui::GetStyle().ItemSpacing.x / 2, 0))) {
 			for (int i = 0; i < rare_qty; ++i) {
 				EnqueueSell((Material)(rare_idx + AmberChunk));
 			}
@@ -468,14 +468,14 @@ void MaterialsWindow::Draw(IDirect3DDevice9* pDevice) {
 		float progress = 0.0f;
 		if (trans_queued > 0) progress = (float)(trans_done) / trans_queued;
 		const char* status = "";
-		if (cancelled) status = "Cancelled";
+		if (cancelled) status = "已取消";
 		else if (to_do > 0) status = "Working";
 		else status = "Ready";
 		ImGui::Text("%s [%d / %d]", status, trans_done, trans_queued);
 		ImGui::SameLine(width1 + ImGui::GetStyle().WindowPadding.x + ImGui::GetStyle().ItemSpacing.x);
 		ImGui::ProgressBar(progress, ImVec2(width2, 0));
 		ImGui::SameLine();
-		if (ImGui::Button("Cancel", ImVec2(100.0f, 0))) {
+		if (ImGui::Button("取消", ImVec2(100.0f, 0))) {
 			Cancel();
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Cancel the current queue of operations");
@@ -570,16 +570,16 @@ void MaterialsWindow::FullConsPriceTooltip() const {
 			|| price[PileofGlitteringDust] == PRICE_NOT_AVAILABLE
 			|| price[IronIngot] == PRICE_NOT_AVAILABLE
 			|| price[Bone] == PRICE_NOT_AVAILABLE) {
-			strcpy_s(buf, "Full Conset Price: (Material not available)");
+			strcpy_s(buf, "三件套总价: (Material not available)");
 		} else if (price[Feather] < 0
 			|| price[PileofGlitteringDust] < 0
 			|| price[IronIngot] < 0
 			|| price[Bone] < 0) {
-			strcpy_s(buf, "Full Conset Price: -");
+			strcpy_s(buf, "三件套总价: -");
 		} else {
 			int p = price[IronIngot] * 10 + price[PileofGlitteringDust] * 10 +
 				price[Bone] * 5 + price[Feather] * 5 + 750;
-			snprintf(buf, 256, "Full Conset Price: %g k", p / 1000.0f);
+			snprintf(buf, 256, "三件套总价: %g k", p / 1000.0f);
 		}
 		ImGui::SetTooltip(buf);
 	}

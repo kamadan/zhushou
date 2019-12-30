@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <string>
 #include <vector>
@@ -19,7 +19,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Travel"; }
+	const char* Name() const override { return "直达"; }
 
 	void Initialize() override;
 

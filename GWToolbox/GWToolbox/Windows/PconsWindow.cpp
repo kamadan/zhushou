@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "PconsWindow.h"
 
 #include <imgui.h>
@@ -28,75 +28,75 @@ void PconsWindow::Initialize() {
 
 	const float s = 64.0f; // all icons are 64x64
 
-	pcons.push_back(new PconCons("Essence of Celerity", "essence", L"Essence_of_Celerity.png", IDB_Pcons_Essence,
+	pcons.push_back(new PconCons("敏捷精华", "敏捷精华", L"Essence_of_Celerity.png", IDB_Pcons_Essence,
 		ImVec2(5 / s , 10 / s), ImVec2(46 / s, 51 / s),
 		ItemID::ConsEssence, SkillID::Essence_of_Celerity_item_effect, 5));
 
-	pcons.push_back(new PconCons("Grail of Might", "grail", L"Grail_of_Might.png", IDB_Pcons_Grail,
+	pcons.push_back(new PconCons("力量圣杯", "力量圣杯", L"Grail_of_Might.png", IDB_Pcons_Grail,
 		ImVec2(5 / s, 12 / s), ImVec2(49 / s, 56 / s),
 		ItemID::ConsGrail, SkillID::Grail_of_Might_item_effect, 5));
 
-	pcons.push_back(new PconCons("Armor of Salvation", "armor", L"Armor_of_Salvation.png", IDB_Pcons_Armor,
+	pcons.push_back(new PconCons("救赎防具", "救赎防具", L"Armor_of_Salvation.png", IDB_Pcons_Armor,
 		ImVec2(0 / s, 2 / s), ImVec2(56 / s, 58 / s),
 		ItemID::ConsArmor, SkillID::Armor_of_Salvation_item_effect, 5));
 
-	pcons.push_back(new PconGeneric("Red Rock Candy", "redrock", L"Red_Rock_Candy.png", IDB_Pcons_RedRock,
+	pcons.push_back(new PconGeneric("红冰糖", "红冰糖", L"Red_Rock_Candy.png", IDB_Pcons_RedRock,
 		ImVec2(0 / s, 4 / s), ImVec2(52 / s, 56 / s),
 		ItemID::RRC, SkillID::Red_Rock_Candy_Rush, 5));
 
-	pcons.push_back(new PconGeneric("Blue Rock Candy", "bluerock", L"Blue_Rock_Candy.png", IDB_Pcons_BlueRock,
+	pcons.push_back(new PconGeneric("蓝冰糖", "蓝冰糖", L"Blue_Rock_Candy.png", IDB_Pcons_BlueRock,
 		ImVec2(0 / s, 4 / s), ImVec2(52 / s, 56 / s),
 		ItemID::BRC, SkillID::Blue_Rock_Candy_Rush, 10));
 
-	pcons.push_back(new PconGeneric("Green Rock Candy", "greenrock", L"Green_Rock_Candy.png", IDB_Pcons_GreenRock,
+	pcons.push_back(new PconGeneric("绿冰糖", "绿冰糖", L"Green_Rock_Candy.png", IDB_Pcons_GreenRock,
 		ImVec2(0 / s, 4 / s), ImVec2(52 / s, 56 / s),
 		ItemID::GRC, SkillID::Green_Rock_Candy_Rush, 15));
 
-	pcons.push_back(new PconGeneric("Golden Egg", "egg", L"Golden_Egg.png", IDB_Pcons_Egg,
+	pcons.push_back(new PconGeneric("金鸡蛋", "egg", L"Golden_Egg.png", IDB_Pcons_Egg,
 		ImVec2(1 / s, 8 / s), ImVec2(48 / s, 55 / s),
 		ItemID::Eggs, SkillID::Golden_Egg_skill, 20));
 
-	pcons.push_back(new PconGeneric("Candy Apple", "apple", L"Candy_Apple.png", IDB_Pcons_Apple,
+	pcons.push_back(new PconGeneric("糖苹果", "糖苹果", L"Candy_Apple.png", IDB_Pcons_Apple,
 		ImVec2(0 / s, 7 / s), ImVec2(50 / s, 57 / s),
 		ItemID::Apples, SkillID::Candy_Apple_skill, 10));
 
-	pcons.push_back(new PconGeneric("Candy Corn", "corn", L"Candy_Corn.png", IDB_Pcons_Corn,
+	pcons.push_back(new PconGeneric("粟米糖", "粟米糖", L"Candy_Corn.png", IDB_Pcons_Corn,
 		ImVec2(5 / s, 10 / s), ImVec2(48 / s, 53 / s),
 		ItemID::Corns, SkillID::Candy_Corn_skill, 10));
 
-	pcons.push_back(new PconGeneric("Birthday Cupcake", "cupcake", L"Birthday_Cupcake.png", IDB_Pcons_Cupcake,
+	pcons.push_back(new PconGeneric("生日杯子蛋糕", "生日杯子蛋糕", L"Birthday_Cupcake.png", IDB_Pcons_Cupcake,
 		ImVec2(1 / s, 5 / s), ImVec2(51 / s, 55 / s),
 		ItemID::Cupcakes, SkillID::Birthday_Cupcake_skill, 10));
 
-	pcons.push_back(new PconGeneric("Slice of Pumpkin Pie", "pie", L"Slice_of_Pumpkin_Pie.png", IDB_Pcons_Pie,
+	pcons.push_back(new PconGeneric("南瓜派", "pie", L"Slice_of_Pumpkin_Pie.png", IDB_Pcons_Pie,
 		ImVec2(0 / s, 7 / s), ImVec2(52 / s, 59 / s),
 		ItemID::Pies, SkillID::Pie_Induced_Ecstasy, 10));
 
-	pcons.push_back(new PconGeneric("War Supplies", "warsupply", L"War_Supplies.png", IDB_Pcons_WarSupplies,
+	pcons.push_back(new PconGeneric("战承物资", "warsupply", L"War_Supplies.png", IDB_Pcons_WarSupplies,
 		ImVec2(0 / s, 0 / s), ImVec2(63/s, 63/s),
 		ItemID::Warsupplies, SkillID::Well_Supplied, 20));
 
-	pcons.push_back(pcon_alcohol = new PconAlcohol("Alcohol", "alcohol", L"Dwarven_Ale.png", IDB_Pcons_Ale,
+	pcons.push_back(pcon_alcohol = new PconAlcohol("Alcohol", "酒水", L"Dwarven_Ale.png", IDB_Pcons_Ale,
 		ImVec2(-5 / s, 1 / s), ImVec2(57 / s, 63 / s),
 		10));
 
-	pcons.push_back(new PconLunar("Lunar Fortunes", "lunars", L"Lunar_Fortune.png", IDB_Pcons_Lunar,
+	pcons.push_back(new PconLunar("命运锦囊", "命运锦囊", L"Lunar_Fortune.png", IDB_Pcons_Lunar,
 		ImVec2(1 / s, 4 / s), ImVec2(56 / s, 59 / s),
 		10));
 
-	pcons.push_back(new PconCity("City speedboost", "city", L"Sugary_Blue_Drink.png", IDB_Pcons_BlueDrink,
+	pcons.push_back(new PconCity("城内加速品", "city", L"Sugary_Blue_Drink.png", IDB_Pcons_BlueDrink,
 		ImVec2(0 / s, 1 / s), ImVec2(61 / s, 62 / s),
 		20));
 
-	pcons.push_back(new PconGeneric("Drake Kabob", "kabob", L"Drake_Kabob.png", IDB_Pcons_Kabob,
+	pcons.push_back(new PconGeneric("烤龙兽肉", "烤龙兽肉", L"Drake_Kabob.png", IDB_Pcons_Kabob,
 		ImVec2(0 / s, 0 / s), ImVec2(64 / s, 64 / s),
 		ItemID::Kabobs, SkillID::Drake_Skin, 10));
 
-	pcons.push_back(new PconGeneric("Bowl of Skalefin Soup", "soup", L"Bowl_of_Skalefin_Soup.png", IDB_Pcons_Soup,
+	pcons.push_back(new PconGeneric("鳞怪鳍汤", "鳞怪鳍汤", L"Bowl_of_Skalefin_Soup.png", IDB_Pcons_Soup,
 		ImVec2(2 / s, 5 / s), ImVec2(51 / s, 54 / s),
 		ItemID::SkalefinSoup, SkillID::Skale_Vigor, 10));
 
-	pcons.push_back(new PconGeneric("Pahnai Salad", "salad", L"Pahnai_Salad.png", IDB_Pcons_Salad,
+	pcons.push_back(new PconGeneric("伊波枷沙拉", "伊波枷沙拉", L"Pahnai_Salad.png", IDB_Pcons_Salad,
 		ImVec2(0 / s, 5 / s), ImVec2(49 / s, 54 / s),
 		ItemID::PahnaiSalad, SkillID::Pahnai_Salad_item_effect, 10));
 
@@ -233,7 +233,7 @@ bool PconsWindow::DrawTabButton(IDirect3DDevice9* device,
 
 	ImGui::PushStyleColor(ImGuiCol_Text, enabled ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1));
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-	if (ImGui::Button(enabled ? "Enabled###pconstoggle" : "Disabled###pconstoggle", 
+	if (ImGui::Button(enabled ? "已启动###pconstoggle" : "已关闭###pconstoggle", 
 		ImVec2(ImGui::GetWindowContentRegionWidth(), 0))) {
 		ToggleEnable();
 	}
@@ -251,7 +251,7 @@ void PconsWindow::Draw(IDirect3DDevice9* device) {
 	if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
 		if (show_enable_button) {
 			ImGui::PushStyleColor(ImGuiCol_Text, enabled ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1));
-			if (ImGui::Button(enabled ? "Enabled###pconstoggle" : "Disabled###pconstoggle",
+			if (ImGui::Button(enabled ? "已启动###pconstoggle" : "已关闭###pconstoggle",
 				ImVec2(ImGui::GetWindowContentRegionWidth(), 0))) {
 				ToggleEnable();
 			}
@@ -308,7 +308,7 @@ bool PconsWindow::SetEnabled(bool b) {
 		if ((pcon == nullptr || pcon->Collapsed || !visible)
 			&& (main == nullptr || main->Collapsed || !MainWindow::Instance().visible)) {
 
-			Log::Info("Pcons %s", enabled ? "enabled" : "disabled");
+			Log::Info("Pcons %s", enabled ? "已启动" : "已关闭");
 		}
 	}
 	if (tick_with_pcons && GW::Map::GetInstanceType() == GW::Constants::InstanceType::Outpost) {
@@ -377,17 +377,17 @@ void PconsWindow::SaveSettings(CSimpleIni* ini) {
 
 void PconsWindow::DrawSettingInternal() {
 	ImGui::Separator();
-	ImGui::Text("Functionality:");
+	ImGui::Text("功能:");
 	ImGui::Checkbox("Tick with pcons", &tick_with_pcons);
 	ImGui::ShowHelp("Enabling or disabling pcons will also Tick or Untick in party list");
-	ImGui::Checkbox("Disable when not found", &Pcon::disable_when_not_found);
+	ImGui::Checkbox("失寻时关闭", &Pcon::disable_when_not_found);
 	ImGui::ShowHelp("Toolbox will disable a pcon if it is not found in the inventory");
-	ImGui::SliderInt("Pcons delay", &Pcon::pcons_delay, 100, 5000, "%.0f milliseconds");
+	ImGui::SliderInt("Pcons delay", &Pcon::pcons_delay, 100, 5000, "%.0f 毫秒");
 	ImGui::ShowHelp(
 		"After using a pcon, toolbox will not use it again for this amount of time.\n"
 		"It is needed to prevent toolbox from using a pcon twice, before it activates.\n"
 		"Decrease the value if you have good ping and you die a lot.");
-	ImGui::SliderInt("Lunars delay", &Pcon::lunar_delay, 100, 500, "%.0f milliseconds");
+	ImGui::SliderInt("Lunars delay", &Pcon::lunar_delay, 100, 500, "%.0f 毫秒");
 	if (ImGui::TreeNode("Thresholds")) {
 		ImGui::Text("When you have less than this amount:\n-The number in the interface becomes yellow.\n-Warning message is displayed when zoning into outpost.");
 		for (Pcon* pcon : pcons) {
@@ -404,7 +404,7 @@ void PconsWindow::DrawSettingInternal() {
 	Colors::DrawSetting("Enabled-Background", &Pcon::enabled_bg_color);
 	if (Pcon::size <= 1.0f) Pcon::size = 1.0f;
 	if (ImGui::TreeNode("Visibility")) {
-		ImGui::Checkbox("Enable/Disable button", &show_enable_button);
+		ImGui::Checkbox("启动/关闭 按钮", &show_enable_button);
 		for (Pcon* pcon : pcons) {
 			ImGui::Checkbox(pcon->chat, &pcon->visible);
 		}
@@ -413,13 +413,13 @@ void PconsWindow::DrawSettingInternal() {
 
 	ImGui::Separator();
 	ImGui::Text("Lunars and Alcohol");
-	ImGui::Text("Current drunk level: %d", Pcon::alcohol_level);
+	ImGui::Text("现醉酒程度: %d 级", Pcon::alcohol_level);
 	ImGui::Checkbox("Suppress lunar and drunk post-processing effects", &Pcon::suppress_drunk_effect);
 	ImGui::ShowHelp("Will actually disable any *change*, so make sure you're not drunk already when enabling this!");
 	ImGui::Checkbox("Suppress lunar and drunk text", &Pcon::suppress_drunk_text);
 	ImGui::ShowHelp("Will hide drunk and lunars messages on top of your and other characters");
 	ImGui::Checkbox("Suppress drunk emotes", &Pcon::suppress_drunk_emotes);
-	ImGui::ShowHelp("Important:\n"
+	ImGui::ShowHelp("警告:\n"
 		"This feature is experimental and might crash your game.\n"
 		"Using level 1 alcohol instead of this is recommended for preventing drunk emotes.\n"
 		"This will prevent kneel, bored, moan, flex, fistshake and roar.\n");

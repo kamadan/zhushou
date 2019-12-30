@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Pcons.h"
 
 #include <d3dx9tex.h>
@@ -105,9 +105,9 @@ void Pcon::Update(int delay) {
 		maptype = GW::Map::GetInstanceType();
 
 		if (quantity == 0) {
-			Log::Error("Cannot find %s, please refill or disable", chat);
+			Log::Error("%s 失寻, please refill or disable", chat);
 		} else if (quantity < threshold) {
-			Log::Warning("Low on %s, please refill or disable", chat);
+			Log::Warning("%s 即将耗尽, please refill or disable", chat);
 		}
 	}
 }
@@ -129,7 +129,7 @@ void Pcon::AfterUsed(bool used, int qty) {
 				|| maptype != GW::Map::GetInstanceType()) { // only yell at the user once
 				mapid = GW::Map::GetMapID();
 				maptype = GW::Map::GetInstanceType();
-				Log::Error("Cannot find %s", chat);
+				Log::Error("%s 失寻", chat);
 			}
 		}
 	}

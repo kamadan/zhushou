@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "HotkeysWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -30,10 +30,10 @@ void HotkeysWindow::Draw(IDirect3DDevice9* pDevice) {
 	ImGui::SetNextWindowPosCenter(ImGuiSetCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiSetCond_FirstUseEver);
 	if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
-		if (ImGui::Button("Create Hotkey...", ImVec2(ImGui::GetWindowContentRegionWidth(), 0))) {
-			ImGui::OpenPopup("Create Hotkey");
+		if (ImGui::Button("添加快键...", ImVec2(ImGui::GetWindowContentRegionWidth(), 0))) {
+			ImGui::OpenPopup("添加快键");
 		}
-		if (ImGui::BeginPopup("Create Hotkey")) {
+		if (ImGui::BeginPopup("添加快键")) {
 			if (ImGui::Selectable("Send Chat")) {
 				hotkeys.push_back(new HotkeySendChat(nullptr, nullptr));
 			}
@@ -49,8 +49,8 @@ void HotkeysWindow::Draw(IDirect3DDevice9* pDevice) {
 			if (ImGui::Selectable("Toggle...")) {
 				hotkeys.push_back(new HotkeyToggle(nullptr, nullptr));
 			}
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Toggle a GWToolbox++ functionality such as clicker");
-			if (ImGui::Selectable("Execute...")) {
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Toggle 激战助手++ 功能 such as clicker");
+			if (ImGui::Selectable("执行...")) {
 				hotkeys.push_back(new HotkeyAction(nullptr, nullptr));
 			}
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Execute a single task such as opening chests\nor reapplying lightbringer title");
@@ -58,14 +58,14 @@ void HotkeysWindow::Draw(IDirect3DDevice9* pDevice) {
 				hotkeys.push_back(new HotkeyTarget(nullptr, nullptr));
 			}
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Target a game entity by its ID");
-			if (ImGui::Selectable("Move to")) {
+			if (ImGui::Selectable("前往")) {
 				hotkeys.push_back(new HotkeyMove(nullptr, nullptr));
 			}
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Move to a specific (x,y) coordinate");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("前往既定坐标 (x,y)");
 			if (ImGui::Selectable("Dialog")) {
 				hotkeys.push_back(new HotkeyDialog(nullptr, nullptr));
 			}
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Send a Dialog");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("发送令码");
 			if (ImGui::Selectable("Ping Build")) {
 				hotkeys.push_back(new HotkeyPingBuild(nullptr, nullptr));
 			}

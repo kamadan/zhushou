@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "DialogsWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -12,54 +12,54 @@
 #include <Modules\Resources.h>
 
 static const char* const questnames[] = {
-	"UW - Chamber",
-	"UW - Wastes",
-	"UW - UWG",
-	"UW - Mnt",
-	"UW - Pits",
-	"UW - Planes",
-	"UW - Pools",
-	"UW - Escort",
-	"UW - Restore",
-	"UW - Vale",
-	"FoW - Defend",
-	"FoW - Army Of Darkness",
-	"FoW - WailingLord",
-	"FoW - Griffons",
-	"FoW - Slaves",
-	"FoW - Restore",
-	"FoW - Hunt",
-	"FoW - Forgemaster",
-	"FoW - Tos",
-	"FoW - Toc",
-	"FoW - Khobay",
-	"DoA - Gloom 1: Deathbringer Company",
-	"DoA - Gloom 2: The Rifts Between Us",
+	"地下 - 清除密室的障碍",
+	"地下 - 古兰斯的使者",
+	"地下 - 不速之客",
+	"地下 - 恶魔暗杀者",
+	"地下 - 被拘禁的亡魂",
+	"地下 - 多姆四骑士",
+	"地下 - 恐惧蛛化精灵女王",
+	"地下 - 护送灵魂",
+	"地下 - 恢复古兰斯圣像",
+	"地下 - 愤怒的灵魂",
+	"灾难 - 保护战争圣殿",
+	"灾难 - 黑暗的军队",
+	"灾难 - 悲鸣领主",
+	"灾难 - 狮鹫兽礼物",
+	"灾难 - 孟席斯的奴隶们",
+	"灾难 - 恢复圣殿",
+	"灾难 - 猎杀碎片狼",
+	"灾难 - 永生的锻造大师",
+	"灾难 - 力量之塔",
+	"灾难 - 勇气之塔",
+	"灾难 - 背叛者库贝",
+	"四门 - 夺心暗域 1: 死亡召唤大队",
+	"四门 - 夺心暗域 2: 异世界的裂缝",
 	"DoA - Gloom 3: To The Rescue",
-	"DoA - City",
-	"DoA - Veil 1: Breaching Stygian Veil",
-	"DoA - Veil 2: Brood Wars",
-	"DoA - Foundry 1: Foundry Of Failed Creations",
-	"DoA - Foundry 2: Foundry Breakout"
+	"四门 - 托加之城",
+	"四门 - 冥狱之幕 1: 突破冥狱之幕",
+	"四门 - 冥狱之幕 2: 一网打尽",
+	"四门 - 铸造厂 1: 失败事物铸造厂",
+	"四门 - 铸造厂 2: 逃出铸造厂"
 };
 static const char* const dialognames[] = {
-	"Craft fow armor",
-	"Prof Change - Warrior",
-	"Prof Change - Ranger",
-	"Prof Change - Monk",
-	"Prof Change - Necro",
-	"Prof Change - Mesmer",
-	"Prof Change - Elementalist",
-	"Prof Change - Assassin",
-	"Prof Change - Ritualist",
-	"Prof Change - Paragon",
-	"Prof Change - Dervish",
-	"Kama -> Docks @ Hahnna",
-	"Docks -> Kaineng @ Mhenlo",
-	"Docks -> LA Gate @ Mhenlo",
-	"LA Gate -> LA @ Neiro",
-	"Faction mission outpost",
-	"Nightfall mission outpost",
+	"(灾难内)打造黑曜石盔甲",
+	"职业更换 - 战士",
+	"职业更换 - 游侠",
+	"职业更换 - 僧侣",
+	"职业更换 - 死灵",
+	"职业更换 - 幻术",
+	"职业更换 - 元素",
+	"职业更换 - 暗杀",
+	"职业更换 - 祭祀",
+	"职业更换 - 圣言",
+	"职业更换 - 神唤",
+	"卡玛丹 -> 领事馆码头 @ Hahnna",
+	"领事馆码头 -> 凯宁中心 @ 涵洛",
+	"领事馆码头 -> 狮门 @ 涵洛",
+	"狮门 -> 狮子拱门 @ Neiro",
+	"二章任务城",
+	"三章任务城",
 };
 
 void DialogsWindow::Initialize() {
@@ -86,21 +86,21 @@ void DialogsWindow::Draw(IDirect3DDevice9* pDevice) {
 	if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
 
 		if (show_common) {
-			DialogButton(0, 2, "Four Horseman", "Take quest in Planes", QuestAcceptDialog(GW::Constants::QuestID::UW::Planes));
-			DialogButton(1, 2, "Demon Assassin", "Take quest in Mountains", QuestAcceptDialog(GW::Constants::QuestID::UW::Mnt));
-			DialogButton(0, 2, "Tower of Strength", "Take quest", QuestAcceptDialog(GW::Constants::QuestID::Fow::Tos));
-			DialogButton(1, 2, "Foundry Reward", "Accept quest reward", QuestRewardDialog(GW::Constants::QuestID::Doa::FoundryBreakout));
+			DialogButton(0, 2, "多姆四骑士", "接混沌平原的任务", QuestAcceptDialog(GW::Constants::QuestID::UW::Planes));
+			DialogButton(1, 2, "恶魔暗杀者", "接双头龙山的任务", QuestAcceptDialog(GW::Constants::QuestID::UW::Mnt));
+			DialogButton(0, 2, "力量之塔", "接任务", QuestAcceptDialog(GW::Constants::QuestID::Fow::Tos));
+			DialogButton(1, 2, "铸造厂奖励2", "接受任务奖励", QuestRewardDialog(GW::Constants::QuestID::Doa::FoundryBreakout));
 			ImGui::Separator();
 		}
 		if (show_uwteles) {
-			DialogButton(0, 4, "Lab", "Teleport Lab", GW::Constants::DialogID::UwTeleLab);
-			DialogButton(1, 4, "Vale", "Teleport Vale", GW::Constants::DialogID::UwTeleVale);
-			DialogButton(2, 4, "Pits", "Teleport Pits", GW::Constants::DialogID::UwTelePits);
-			DialogButton(3, 4, "Pools", "Teleport Pools", GW::Constants::DialogID::UwTelePools);
+			DialogButton(0, 4, "迷宫", "传送至 地下世界 迷宫", GW::Constants::DialogID::UwTeleLab);
+			DialogButton(1, 4, "遗忘谷", "传送至 地下世界 遗忘谷", GW::Constants::DialogID::UwTeleVale);
+			DialogButton(2, 4, "骷髅墓穴", "传送至 地下世界 骷髅墓穴", GW::Constants::DialogID::UwTelePits);
+			DialogButton(3, 4, "孵化池", "传送至 地下世界 孵化池", GW::Constants::DialogID::UwTelePools);
 
-			DialogButton(0, 3, "Planes", "Teleport Planes", GW::Constants::DialogID::UwTelePlanes);
-			DialogButton(1, 3, "Wastes", "Telport Wastes", GW::Constants::DialogID::UwTeleWastes);
-			DialogButton(2, 3, "Mountains", "Teleport Mountains\nThis is NOT the mountains quest", GW::Constants::DialogID::UwTeleMnt);
+			DialogButton(0, 3, "混沌平原", "传送至 地下世界 混沌平原", GW::Constants::DialogID::UwTelePlanes);
+			DialogButton(1, 3, "荒凉冰地", "传送至 地下世界 荒凉冰地", GW::Constants::DialogID::UwTeleWastes);
+			DialogButton(2, 3, "双头龙山", "传送至 地下世界 双头龙山\n此 [非] 龙山 任务", GW::Constants::DialogID::UwTeleMnt);
 			ImGui::Separator();
 		}
 		const int n_quests = _countof(questnames);
@@ -111,11 +111,11 @@ void DialogsWindow::Draw(IDirect3DDevice9* pDevice) {
 				ImGui::Combo("", &fav_index[i], questnames, n_quests);
 				ImGui::PopItemWidth();
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Take", ImVec2(40.0f, 0))) {
+				if (ImGui::Button("接", ImVec2(40.0f, 0))) {
 					GW::Agents::SendDialog(QuestAcceptDialog(IndexToQuestID(fav_index[i])));
 				}
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Reward", ImVec2(60.0f, 0))) {
+				if (ImGui::Button("奖励", ImVec2(60.0f, 0))) {
 					GW::Agents::SendDialog(QuestRewardDialog(IndexToDialogID(fav_index[i])));
 				}
 				ImGui::PopID();
@@ -129,7 +129,7 @@ void DialogsWindow::Draw(IDirect3DDevice9* pDevice) {
 			ImGui::Combo("###dialogcombo", &dialogindex, dialognames, n_dialogs);
 			ImGui::PopItemWidth();
 			ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-			if (ImGui::Button("Send##1", ImVec2(60.0f, 0))) {
+			if (ImGui::Button("发送##1", ImVec2(60.0f, 0))) {
 				GW::Agents::SendDialog(IndexToDialogID(dialogindex));
 			}
 
@@ -137,15 +137,15 @@ void DialogsWindow::Draw(IDirect3DDevice9* pDevice) {
 			ImGui::InputText("###dialoginput", customdialogbuf, 64, ImGuiInputTextFlags_None);
 			ImGui::PopItemWidth();
 			if (ImGui::IsItemHovered()) {
-				ImGui::SetTooltip("You can prefix the number by \"0x\" to specify an hexadecimal number");
+				ImGui::SetTooltip("You can prefix the number by \"0x\" 指定一16位进制的数字");
 			}
 			ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-			if (ImGui::Button("Send##2", ImVec2(60.0f, 0))) {
+			if (ImGui::Button("发送##2", ImVec2(60.0f, 0))) {
 				int id;
 				if (GuiUtils::ParseInt(customdialogbuf, &id)) {
 					GW::Agents::SendDialog(id);
 				} else {
-					Log::Error("Invalid dialog number '%s'", customdialogbuf);
+					Log::Error("无效令码 '%s'", customdialogbuf);
 				}
 			}
 		}
@@ -163,7 +163,7 @@ void DialogsWindow::DrawSettingInternal() {
 	ImGui::PopItemWidth();
 	ImGui::Text("Show:");
 	ImGui::Checkbox("Common 4", &show_common);
-	ImGui::Checkbox("UW Teles", &show_uwteles);
+	ImGui::Checkbox("地下传送", &show_uwteles);
 	ImGui::Checkbox("Favorites", &show_favorites);
 	ImGui::Checkbox("Custom", &show_custom);
 }

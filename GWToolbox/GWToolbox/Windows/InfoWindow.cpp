@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "InfoWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -131,22 +131,22 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 			ImGui::SameLine(ImGui::GetWindowContentRegionWidth() / 2);
 			ImGui::Checkbox("Damage", &PartyDamage::Instance().visible);
 			ImGui::ShowHelp("Show the damage done by each player in your party.\nOnly works on the damage done within your radar range.");
-			ImGui::Checkbox("Health", &HealthWidget::Instance().visible);
+			ImGui::Checkbox("体力", &HealthWidget::Instance().visible);
 			ImGui::ShowHelp("Displays the health of the target.\nMax health is only computed and refreshed when you directly damage or heal your target");
 			ImGui::SameLine(ImGui::GetWindowContentRegionWidth() / 2);
-			ImGui::Checkbox("Distance", &DistanceWidget::Instance().visible);
+			ImGui::Checkbox("距离", &DistanceWidget::Instance().visible);
 			ImGui::ShowHelp("Displays the distance to your target.\n1010 = Earshot / Aggro\n1248 = Cast range\n2500 = Spirit range\n5000 = Radar range");
 			ImGui::Checkbox("Clock", &ClockWidget::Instance().visible);
 			ImGui::ShowHelp("Displays the system time (hour : minutes)");
 			ImGui::SameLine(ImGui::GetWindowContentRegionWidth() / 2);
-			ImGui::Checkbox("Notepad", &NotePadWindow::Instance().visible);
-			ImGui::ShowHelp("A simple in-game text editor");
+			ImGui::Checkbox("便笺", &NotePadWindow::Instance().visible);
+			ImGui::ShowHelp("一简易的嵌入式便笺");
 			ImGui::Checkbox("Alcohol", &AlcoholWidget::Instance().visible);
 			ImGui::ShowHelp("Shows a countdown timer for alcohol");
 		}
 
 		if (show_open_chest) {
-			if (ImGui::Button("Open Xunlai Chest", ImVec2(-1.0f, 0))) {
+			if (ImGui::Button("打开桑莱保险箱", ImVec2(-1.0f, 0))) {
 				GW::GameThread::Enqueue([]() {
 					GW::Items::OpenXunlaiWindow();
 				});
@@ -169,8 +169,8 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 				snprintf(modelid_buf, 32, "%d", player->player_number);
 			}
 			ImGui::PushItemWidth(-80.0f);
-			ImGui::InputText("X pos##player", x_buf, 32, ImGuiInputTextFlags_ReadOnly);
-			ImGui::InputText("Y pos##player", y_buf, 32, ImGuiInputTextFlags_ReadOnly);
+			ImGui::InputText("X 坐标##player", x_buf, 32, ImGuiInputTextFlags_ReadOnly);
+			ImGui::InputText("Y 坐标##player", y_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::InputText("Speed##player", s_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::InputText("Agent ID##player", agentid_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::ShowHelp("Agent ID is unique for each agent in the instance,\nIt's generated on spawn and will change in different instances.");
@@ -215,8 +215,8 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 				snprintf(modelid_buf, 32, "-");
 			}
 			ImGui::PushItemWidth(-80.0f);
-			ImGui::InputText("X pos##target", x_buf, 32, ImGuiInputTextFlags_ReadOnly);
-			ImGui::InputText("Y pos##target", y_buf, 32, ImGuiInputTextFlags_ReadOnly);
+			ImGui::InputText("X 坐标##target", x_buf, 32, ImGuiInputTextFlags_ReadOnly);
+			ImGui::InputText("Y 坐标##target", y_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::InputText("Speed##target", s_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::InputText("Agent ID##target", agentid_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::ShowHelp("Agent ID is unique for each agent in the instance,\nIt's generated on spawn and will change in different instances.");
@@ -226,12 +226,12 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 			if (ImGui::TreeNode("Advanced##target")) {
 				ImGui::PushItemWidth(ImGui::GetContentRegionAvailWidth() / 2);
 				if (target) {
-					ImGui::LabelText("Addr", "%p", target);
+					ImGui::LabelText("内存地址", "%p", target);
 					ImGui::LabelText("Id", "%d", target->agent_id);
 					ImGui::LabelText("Z", "%f", target->z);
-					ImGui::LabelText("Width", "%f", target->width1);
-					ImGui::LabelText("Height", "%f", target->height1);
-					ImGui::LabelText("Rotation", "%f", target->rotation_angle);
+					ImGui::LabelText("宽度", "%f", target->width1);
+					ImGui::LabelText("高度", "%f", target->height1);
+					ImGui::LabelText("面向", "%f", target->rotation_angle);
 					ImGui::LabelText("NameProperties", "0x%X", target->name_properties);
 					ImGui::LabelText("X", "%f", target->pos.x);
 					ImGui::LabelText("Y", "%f", target->pos.y);
@@ -243,8 +243,8 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 					ImGui::LabelText("AS of Weapon", "%f", target->weapon_attack_speed);
 					ImGui::LabelText("AS modifier", "%f", target->attack_speed_modifier);
 					ImGui::LabelText("PlayerNumber", "%d", target->player_number);
-					ImGui::LabelText("Primary Prof", "%d", target->primary);
-					ImGui::LabelText("Secondary Prof", "%d", target->secondary);
+					ImGui::LabelText("主职业", "%d", target->primary);
+					ImGui::LabelText("副职业", "%d", target->secondary);
 					ImGui::LabelText("Level", "%d", target->level);
 					ImGui::LabelText("TeamId", "%d", target->team_id);
 					ImGui::LabelText("Effects", "0x%X", target->effects);
@@ -265,14 +265,14 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 			static char file_buf[32] = "";
 			snprintf(id_buf, 32, "%d", GW::Map::GetMapID());
 			switch (GW::Map::GetInstanceType()) {
-			case GW::Constants::InstanceType::Outpost: type = "Outpost\0\0\0"; break;
-			case GW::Constants::InstanceType::Explorable: type = "Explorable"; break;
-			case GW::Constants::InstanceType::Loading: type = "Loading\0\0\0"; break;
+			case GW::Constants::InstanceType::Outpost: type = "城镇\0\0\0"; break;
+			case GW::Constants::InstanceType::Explorable: type = "探索区域"; break;
+			case GW::Constants::InstanceType::Loading: type = "正在读图\0\0\0"; break;
 			}
 			snprintf(file_buf, 32, "%d", mapfile);
 			ImGui::PushItemWidth(-80.0f);
 			ImGui::InputText("Map ID", id_buf, 32, ImGuiInputTextFlags_ReadOnly);
-			ImGui::ShowHelp("Map ID is unique for each area");
+			ImGui::ShowHelp("每处皆有一独特的地图号");
 			ImGui::InputText("Map Type", type, 11, ImGuiInputTextFlags_ReadOnly);
 			ImGui::InputText("Map file", file_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::ShowHelp("Map file is unique for each pathing map (e.g. used by minimap).\nMany different maps use the same map file");
@@ -282,11 +282,11 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 			static char id_buf[32] = "";
 			snprintf(id_buf, 32, "0x%X", GW::Agents::GetLastDialogId());
 			ImGui::PushItemWidth(-80.0f);
-			ImGui::InputText("Last Dialog", id_buf, 32, ImGuiInputTextFlags_ReadOnly);
+			ImGui::InputText("前一令码", id_buf, 32, ImGuiInputTextFlags_ReadOnly);
 			ImGui::PopItemWidth();
 		}
 		if (show_item && ImGui::CollapsingHeader("Item")) {
-			ImGui::Text("First item in inventory");
+			ImGui::Text("背包左上格内之物");
 			static char modelid[32] = "";
 			strcpy_s(modelid, "-");
 			GW::Bag** bags = GW::Items::GetBagArray();
@@ -315,13 +315,13 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 					GW::Quest q = qlog[i];
 					if (q.quest_id == qid) {
 						ImGui::Text("ID: 0x%X", q.quest_id);
-						ImGui::Text("Marker: (%.0f, %.0f)", q.marker.x, q.marker.y);
+						ImGui::Text("指向针: (%.0f, %.0f)", q.marker.x, q.marker.y);
 						break;
 					}
 				}
 			}
 		}
-		if (show_mobcount && ImGui::CollapsingHeader("Enemy count")) {
+		if (show_mobcount && ImGui::CollapsingHeader("(敌)个数统计")) {
 			const float sqr_soul_range = 1400.0f * 1400.0f;
 			int soul_count = 0;
 			int cast_count = 0;
@@ -353,14 +353,14 @@ void InfoWindow::Draw(IDirect3DDevice9* pDevice) {
 			}
 
 			if (GW::Map::GetMapID() == GW::Constants::MapID::Domain_of_Anguish) {
-				ImGui::Text("%d Soul Tormentors", soul_count);
-				ImGui::ShowHelp("Only in Domain of Anguish, within 1400 range");
+				ImGui::Text("%d 魂拷问者", soul_count);
+				ImGui::ShowHelp("Only in 悲难领地, within 1400 range");
 			}
-			ImGui::Text("%d foes in casting range", cast_count);
-			ImGui::Text("%d foes in spirit range", spirit_count);
-			ImGui::Text("%d foes in compass range", compass_count);
+			ImGui::Text("施法范围内有 %d 名敌人", cast_count);
+			ImGui::Text("灵距内有 %d 名敌人", spirit_count);
+			ImGui::Text("雷达范围内有 %d 名敌人", compass_count);
 		}
-		if (show_resignlog && ImGui::CollapsingHeader("Resign Log")) {
+		if (show_resignlog && ImGui::CollapsingHeader("退出令统计")) {
 			DrawResignlog();
 		}
 	}
@@ -408,10 +408,10 @@ void InfoWindow::Update(float delta) {
 
 const char* InfoWindow::GetStatusStr(Status status) {
 	switch (status) {
-	case InfoWindow::Unknown: return "Unknown";
-	case InfoWindow::NotYetConnected: return "Not connected";
+	case InfoWindow::Unknown: return "不明";
+	case InfoWindow::NotYetConnected: return "已失联/已断网";
 	case InfoWindow::Connected: return "Connected";
-	case InfoWindow::Resigned: return "Resigned";
+	case InfoWindow::Resigned: return "已发退出令";
 	case InfoWindow::Left: return "Left";
 	default: return "";
 	}
@@ -424,7 +424,7 @@ void InfoWindow::PrintResignStatus(wchar_t *buffer, size_t size, size_t index, c
 	_snwprintf(buffer, size, L"%d. %s - %S", index + 1, player_name,
 		(player_status == Connected
 			&& GW::Map::GetInstanceType() == GW::Constants::InstanceType::Explorable)
-		? "Connected (not resigned)" : status_str);
+		? "Connected (尚未发退出令)" : status_str);
 }
 
 void InfoWindow::DrawResignlog() {
@@ -440,7 +440,7 @@ void InfoWindow::DrawResignlog() {
 		if (partymember.login_number >= players.size()) continue;
 		GW::Player& player = players[partymember.login_number];
 		ImGui::PushID(i);
-		if (ImGui::Button("Send")) {
+		if (ImGui::Button("发送")) {
 			// Todo: wording probably needs improvement
 			wchar_t buf[256];
 			PrintResignStatus(buf, 256, i, player.name);
@@ -462,7 +462,7 @@ void InfoWindow::DrawResignlog() {
 }
 
 void InfoWindow::DrawSettingInternal() {
-	ImGui::Checkbox("Show widget toggles", &show_widgets);
+	ImGui::Checkbox("Show 配件开关", &show_widgets);
 	ImGui::Checkbox("Show 'Open Xunlai Chest' button", &show_open_chest);
 	ImGui::Checkbox("Show Player", &show_player);
 	ImGui::Checkbox("Show Target", &show_target);
@@ -471,7 +471,7 @@ void InfoWindow::DrawSettingInternal() {
 	ImGui::Checkbox("Show Item", &show_item);
 	ImGui::Checkbox("Show Quest", &show_quest);
 	ImGui::Checkbox("Show Enemy Count", &show_mobcount);
-	ImGui::Checkbox("Show Resign Log", &show_resignlog);
+	ImGui::Checkbox("Show 退出令统计", &show_resignlog);
 }
 
 void InfoWindow::LoadSettings(CSimpleIni* ini) {

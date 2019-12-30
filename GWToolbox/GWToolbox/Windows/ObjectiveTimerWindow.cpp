@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "ObjectiveTimerWindow.h"
 
 #include <imgui.h>
@@ -243,15 +243,15 @@ void ObjectiveTimerWindow::AddFoWObjectiveSet() {
 	::AsyncGetMapName(os->name, sizeof(os->name));
 	os->objectives.emplace_back(309, "ToC");
 	os->objectives.emplace_back(310, "Wailing Lord");
-	os->objectives.emplace_back(311, "Griffons");
-	os->objectives.emplace_back(312, "Defend");
-	os->objectives.emplace_back(313, "Forge");
-	os->objectives.emplace_back(314, "Menzies");
+	os->objectives.emplace_back(311, "狮鹫兽礼物");
+	os->objectives.emplace_back(312, "保护战争圣殿");
+	os->objectives.emplace_back(313, "永生的锻造大师");
+	os->objectives.emplace_back(314, "黑暗的军队");
 	os->objectives.emplace_back(315, "Restore");
 	os->objectives.emplace_back(316, "Khobay");
 	os->objectives.emplace_back(317, "ToS");
-	os->objectives.emplace_back(318, "Burning Forest");
-	os->objectives.emplace_back(319, "The Hunt");
+	os->objectives.emplace_back(318, "孟席斯的奴隶们");
+	os->objectives.emplace_back(319, "猎杀碎片狼");
 	objective_sets.push_back(os);
 }
 void ObjectiveTimerWindow::AddUWObjectiveSet() {
@@ -261,13 +261,13 @@ void ObjectiveTimerWindow::AddUWObjectiveSet() {
 	os->objectives.emplace_back(147, "Restore");
 	os->objectives.emplace_back(148, "Escort");
 	os->objectives.emplace_back(149, "UWG");
-	os->objectives.emplace_back(150, "Vale");
+	os->objectives.emplace_back(150, "遗忘谷");
 	os->objectives.emplace_back(151, "Waste");
-	os->objectives.emplace_back(152, "Pits");
-	os->objectives.emplace_back(153, "Planes");
+	os->objectives.emplace_back(152, "骷髅墓穴");
+	os->objectives.emplace_back(153, "混沌平原");
 	os->objectives.emplace_back(154, "Mnts");
-	os->objectives.emplace_back(155, "Pools");
-	os->objectives.emplace_back(157, "Dhuum");
+	os->objectives.emplace_back(155, "孵化池");
+	os->objectives.emplace_back(157, "多姆");
 	objective_sets.push_back(os);
 }
 
@@ -284,7 +284,7 @@ void ObjectiveTimerWindow::Draw(IDirect3DDevice9* pDevice) {
 	if (ImGui::Begin(Name(), GetVisiblePtr(), GetWinFlags())) {
 
         if (objective_sets.empty()) {
-            ImGui::Text("Enter DoA, FoW, or UW to begin");
+            ImGui::Text("启动前提： 角色已入悲难之门(四门)，灾难裂痕，或地下世界.");
         } else {
             for (auto& it = objective_sets.rbegin(); it != objective_sets.rend(); it++) {
                 bool show = (*it)->Draw();
@@ -400,7 +400,7 @@ void ObjectiveTimerWindow::Objective::Draw() {
     }
     if (ImGui::Button(name, ImVec2(GetGridItemWidth(), 0))) {
         char buf[256];
-        snprintf(buf, 256, "[%s] ~ Start: %s ~ End: %s ~ Time: %s",
+        snprintf(buf, 256, "[%s] ~ 开始: %s ~ 结束: %s ~ 耗时: %s",
             name, cached_start, cached_done, cached_duration);
         GW::Chat::SendChat('#', buf);
     }
@@ -460,7 +460,7 @@ bool ObjectiveTimerWindow::ObjectiveSet::Draw() {
         int i = 1;
         if (show_start_column) {
             ImGui::SetCursorPosX(GetGridItemX(i++));
-            ImGui::Text("Start");
+            ImGui::Text("开始");
         }
         if (show_end_column) {
             if (i > 1) ImGui::SameLine();

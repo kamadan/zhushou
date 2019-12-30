@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "HeroBuildsWindow.h"
 
 #include <GWCA\Constants\Constants.h>
@@ -73,16 +73,16 @@ namespace {
 	const int hero_count = _countof(HeroIndexToID);
 
 	const char *HeroName[] = {
-		"No Hero", "Norgu", "Goren", "Tahlkora",
-		"Master Of Whispers", "Acolyte Jin", "Koss", "Dunkoro",
-		"Acolyte Sousuke", "Melonni", "Zhed Shadowhoof",
-		"General Morgahn", "Margrid The Sly", "Zenmai",
-		"Olias", "Razah", "MOX", "Keiran Thackeray", "Jora",
-		"Pyre Fierceshot", "Anton", "Livia", "Hayda",
-		"Kahmu", "Gwen", "Xandra", "Vekk", "Ogden",
-		"Mercenary Hero 1", "Mercenary Hero 2", "Mercenary Hero 3",
-		"Mercenary Hero 4", "Mercenary Hero 5", "Mercenary Hero 6",
-		"Mercenary Hero 7", "Mercenary Hero 8", "Miku", "Zei Ri"
+		"No Hero", "诺古", "高恩", "塔蔻菈",
+		"唤言大师", "侍从静", "寇斯", "唐克罗",
+		"侍从萨苏克", "梅隆妮", "影爪杰德",
+		"摩根将军", "狡猾者玛格丽特 (狡诈者玛格丽)", "刃玛伊",
+		"奥里亚斯", "雷萨", "MOX", "Keiran Thackeray", "乔拉",
+		"烈之击炎焰", "安托", "莉薇亚", "海妲",
+		"卡慕", "关", "珊卓亚", "维克", "Ogden",
+		"佣兵 1", "佣兵 2", "佣兵 3",
+		"佣兵 4", "佣兵 5", "佣兵 6",
+		"佣兵 7", "佣兵 8", "Miku", "Zei Ri"
 	};
 
 	char MercHeroNames[8][20] = { 0 };
@@ -115,10 +115,10 @@ void HeroBuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 					Load(tbuild);
 				}
 				if (ImGui::IsItemHovered()) {
-					ImGui::SetTooltip("Click to load builds to heroes and player");
+					ImGui::SetTooltip("击此以替英雄及角色装填技能样本");
 				}
 				ImGui::SameLine(0, ImGui::GetStyle().ItemInnerSpacing.x);
-				if (ImGui::Button("Edit", ImVec2(60.0f, 0))) {
+				if (ImGui::Button("修改", ImVec2(60.0f, 0))) {
 					tbuild.edit_open = true;
 				}
 				ImGui::PopID();
@@ -172,7 +172,7 @@ void HeroBuildsWindow::Draw(IDirect3DDevice9* pDevice) {
                 if (j == 0) {
                     ImGui::Text("Player");
                 } else {
-                    if (ImGui::MyCombo("###heroid", "Choose Hero", &build.hero_index,
+                    if (ImGui::MyCombo("###heroid", "选择英雄", &build.hero_index,
                         [](void* data, int idx, const char** out_text) -> bool {
                         if (idx < 0) return false;
                         if (idx >= hero_count) return false;
@@ -200,7 +200,7 @@ void HeroBuildsWindow::Draw(IDirect3DDevice9* pDevice) {
                 }
                 ImGui::PopItemWidth();
                 ImGui::SameLine(ImGui::GetWindowWidth() - 50.0f - ImGui::GetStyle().WindowPadding.x);
-                if (ImGui::Button("Load", ImVec2(50.0f, 0))) {
+                if (ImGui::Button("装填", ImVec2(50.0f, 0))) {
                     Load(tbuild, j);
                 }
                 if (j == 0) {
@@ -224,23 +224,23 @@ void HeroBuildsWindow::Draw(IDirect3DDevice9* pDevice) {
             }
             if (ImGui::IsItemHovered()) ImGui::SetTooltip("Move the teambuild down in the list");
             ImGui::SameLine();
-            if (ImGui::SmallButton("Delete")) {
-                ImGui::OpenPopup("Delete Teambuild?");
+            if (ImGui::SmallButton("删除")) {
+                ImGui::OpenPopup("删除整团的技能样本?");
             }
             if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete the teambuild");
             ImGui::SameLine();
             ImGui::PushItemWidth(110.0f);
-            const static char* modes[] = { "Don't change", "Normal Mode", "Hard Mode" };
+            const static char* modes[] = { "Don't change", "普通模式", "困难模式" };
             ImGui::Combo("Mode", &tbuild.mode, modes, 3);
             ImGui::PopItemWidth();
 			ImGui::SameLine(ImGui::GetWindowWidth() -
 				ImGui::GetStyle().WindowPadding.x - ImGui::GetWindowContentRegionWidth() * 0.4f);
-			if (ImGui::Button("Close", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.4f, 0))) {
+			if (ImGui::Button("关闭", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.4f, 0))) {
 				tbuild.edit_open = false;
 			}
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Close this window");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("关闭此窗口");
 
-			if (ImGui::BeginPopupModal("Delete Teambuild?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+			if (ImGui::BeginPopupModal("删除整团的技能样本?", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 				ImGui::Text("Are you sure?\nThis operation cannot be undone.\n\n");
 				if (ImGui::Button("OK", ImVec2(120, 0))) {
 					teambuilds.erase(teambuilds.begin() + i);
@@ -248,7 +248,7 @@ void HeroBuildsWindow::Draw(IDirect3DDevice9* pDevice) {
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::SameLine();
-				if (ImGui::Button("Cancel", ImVec2(120, 0))) {
+				if (ImGui::Button("取消", ImVec2(120, 0))) {
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::EndPopup();
@@ -362,7 +362,7 @@ void HeroBuildsWindow::LoadFromFile() {
 		const char* section = entry.pItem;
 
 		TeamHeroBuild tb(inifile->GetValue(section, "buildname", ""));
-		tb.mode = inifile->GetLongValue(section, "mode", false);
+		tb.mode = inifile->GetLongValue(section, "模式", false);
 		tb.builds.reserve(8);
 
 		for (int i = 0; i < 8; ++i) {
@@ -404,7 +404,7 @@ void HeroBuildsWindow::SaveToFile() {
 			char section[16];
 			snprintf(section, 16, "builds%03d", i);
 			inifile->SetValue(section, "buildname", tbuild.name);
-			inifile->SetLongValue(section, "mode", tbuild.mode);
+			inifile->SetLongValue(section, "模式", tbuild.mode);
 			for (unsigned int j = 0; j < tbuild.builds.size(); ++j) {
 				const HeroBuild& build = tbuild.builds[j];
 				char namekey[16];

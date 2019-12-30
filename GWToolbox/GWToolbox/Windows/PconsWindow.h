@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <Defines.h>
 
@@ -18,7 +18,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Pcons"; }
+	const char* Name() const override { return "补品"; }
 
 	void Initialize() override;
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MainWindow.h"
 
 #include <imgui.h>
@@ -24,7 +24,7 @@ void MainWindow::SaveSettings(CSimpleIni* ini) {
 
 void MainWindow::DrawSettingInternal() {
 	ImGui::Checkbox("Close other windows when opening a new one", &one_panel_at_time_only);
-	ImGui::ShowHelp("Only affects windows (with a title bar), not widgets");
+	ImGui::ShowHelp("Only affects windows (with a title bar), not 配件");
 }
 
 void MainWindow::Draw(IDirect3DDevice9* device) {

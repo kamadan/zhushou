@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA\Utilities\Hook.h>
 
@@ -15,7 +15,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Info"; }
+	const char* Name() const override { return "数据"; }
 
 	void Initialize() override;
 

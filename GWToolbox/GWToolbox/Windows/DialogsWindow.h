@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <Windows.h>
 #include <vector>
@@ -15,7 +15,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Dialogs"; }
+	const char* Name() const override { return "令码"; }
 
 	void Initialize() override;
 

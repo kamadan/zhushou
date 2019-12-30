@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ToolboxWindow.h"
 
@@ -40,7 +40,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Builds"; }
+	const char* Name() const override { return "样本"; }
 
 	void Initialize() override;
 	void Terminate() override;
