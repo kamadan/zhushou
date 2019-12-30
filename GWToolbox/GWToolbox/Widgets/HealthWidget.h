@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ToolboxWidget.h"
 
@@ -11,7 +11,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Health"; }
+	const char* Name() const override { return "体力"; }
 
     void LoadSettings(CSimpleIni *ini) override;
 	void SaveSettings(CSimpleIni *ini) override;

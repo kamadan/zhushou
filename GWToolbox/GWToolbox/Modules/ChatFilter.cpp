@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "ChatFilter.h"
 
 #include <imgui.h>
@@ -479,7 +479,7 @@ void ChatFilter::DrawSettingInternal() {
 	ImGui::Checkbox("Earning skill points", &skill_points);
 	ImGui::Checkbox("PvP messages", &pvp_messages);
 	ImGui::ShowHelp("Such as 'A skill was updated for pvp!'");
-	ImGui::Checkbox("9 Rings messages", &ninerings);
+	ImGui::Checkbox("九环猜谜 提示语", &ninerings);
 	ImGui::Checkbox("Lunar fortunes messages", &lunars);
 	ImGui::Checkbox("'No one hears you...'", &noonehearsyou);
 	ImGui::Checkbox("'Player x might not reply because his/her status is set to away'", &away);

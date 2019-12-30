@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "DistanceWidget.h"
 
 #include <GWCA/Constants/Constants.h>
@@ -31,9 +31,9 @@ void DistanceWidget::Draw(IDirect3DDevice9* pDevice) {
 			ImGui::PushFont(GuiUtils::GetFont(GuiUtils::f20));
 			cur = ImGui::GetCursorPos();
 			ImGui::SetCursorPos(ImVec2(cur.x + 1, cur.y + 1));
-			ImGui::TextColored(ImColor(0, 0, 0), "Distance");
+			ImGui::TextColored(ImColor(0, 0, 0), "距离");
 			ImGui::SetCursorPos(cur);
-			ImGui::Text("Distance");
+			ImGui::Text("距离");
 			ImGui::PopFont();
 
 			// perc

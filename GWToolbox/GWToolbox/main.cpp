@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Defines.h"
 #include "GWToolbox.h"
 #include "logger.h"

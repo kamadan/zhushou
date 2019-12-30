@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -263,11 +263,11 @@ void PartyDamage::Draw(IDirect3DDevice9* device) {
 			if (damage[i].damage < 1000) {
 				snprintf(buf, BUF_SIZE, "%d", damage[i].damage);
 			} else if (damage[i].damage < 1000 * 10) {
-				snprintf(buf, BUF_SIZE, "%.2f k", (float)damage[i].damage / 1000);
+				snprintf(buf, BUF_SIZE, "%.2f 千", (float)damage[i].damage / 1000);
 			} else if (damage[i].damage < 1000 * 1000) {
-				snprintf(buf, BUF_SIZE, "%.1f k", (float)damage[i].damage / 1000);
+				snprintf(buf, BUF_SIZE, "%.1f 千", (float)damage[i].damage / 1000);
 			} else {
-				snprintf(buf, BUF_SIZE, "%.2f m", (float)damage[i].damage / (1000 * 1000));
+				snprintf(buf, BUF_SIZE, "%.2f 百万", (float)damage[i].damage / (1000 * 1000));
 			}
 			ImGui::GetWindowDrawList()->AddText(
 				ImVec2(x + ImGui::GetStyle().ItemSpacing.x, y + i * line_height),
@@ -409,11 +409,11 @@ void PartyDamage::DrawSettings() {
 void PartyDamage::DrawSettingInternal() {
 	ImGui::Checkbox("Bars towards the left", &bars_left);
 	ImGui::ShowHelp("If unchecked, they will expand to the right");
-	ImGui::DragFloat("Width", &width, 1.0f, 50.0f, 0.0f, "%.0f");
+	ImGui::DragFloat("宽度", &width, 1.0f, 50.0f, 0.0f, "%.0f");
 	ImGui::InputInt("Row Height", &row_height);
 	ImGui::ShowHelp("Height of each row, leave 0 for default");
 	if (width <= 0) width = 1.0f;
-	ImGui::DragInt("Timeout", &recent_max_time, 10.0f, 1000, 10 * 1000, "%.0f milliseconds");
+	ImGui::DragInt("Timeout", &recent_max_time, 10.0f, 1000, 10 * 1000, "%.0f 毫秒");
 	if (recent_max_time < 0) recent_max_time = 0;
 	ImGui::ShowHelp("After this amount of time, each player recent damage (blue bar) will be reset");
 	Colors::DrawSetting("Background", &color_background);

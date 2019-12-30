@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/GameEntities/Agent.h>
 #include <SimpleIni.h>

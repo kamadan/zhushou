@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Updater.h"
 
 #include <GWCA/Managers/GameThreadMgr.h>
@@ -150,7 +150,7 @@ void Updater::Draw(IDirect3DDevice9* device) {
 			bool visible = true;
 			ImGui::SetNextWindowSize(ImVec2(-1, -1), ImGuiSetCond_Appearing);
 			ImGui::SetNextWindowPosCenter(ImGuiSetCond_Appearing);
-			ImGui::Begin("Toolbox Update!", &visible);
+			ImGui::Begin("助手更新!", &visible);
 			ImGui::Text("GWToolbox++ version %s is available! You have %s%s",
 				server_version.c_str(), GWTOOLBOX_VERSION, BETA_VERSION);
 			ImGui::Text("Changes:");
@@ -185,14 +185,14 @@ void Updater::Draw(IDirect3DDevice9* device) {
 		if (mode == 2 && visible) {
 			ImGui::SetNextWindowSize(ImVec2(-1, -1), ImGuiSetCond_Appearing);
 			ImGui::SetNextWindowPosCenter(ImGuiSetCond_Appearing);
-			ImGui::Begin("Toolbox Update!", &visible);
+			ImGui::Begin("助手更新!", &visible);
 			ImGui::Text("GWToolbox++ version %s is available! You have %s",
 				server_version.c_str(), GWTOOLBOX_VERSION);
 			ImGui::Text("Changes:");
 			ImGui::Text(changelog.c_str());
 
 			ImGui::Text("");
-			ImGui::Text("Downloading update...");
+			ImGui::Text("正在下载更新...");
 			if (ImGui::Button("Hide", ImVec2(100, 0))) {
 				visible = false;
 			}
@@ -203,7 +203,7 @@ void Updater::Draw(IDirect3DDevice9* device) {
 		if (mode >= 2 && visible) {
 			ImGui::SetNextWindowSize(ImVec2(-1, -1), ImGuiSetCond_Appearing);
 			ImGui::SetNextWindowPosCenter(ImGuiSetCond_Appearing);
-			ImGui::Begin("Toolbox Update!", &visible);
+			ImGui::Begin("助手更新!", &visible);
 			ImGui::Text("GWToolbox++ version %s is available! You have %s",
 				server_version.c_str(), GWTOOLBOX_VERSION);
 			ImGui::Text("Changes:");
@@ -222,7 +222,7 @@ void Updater::Draw(IDirect3DDevice9* device) {
 }
 
 void Updater::DoUpdate() {
-	Log::Warning("Downloading update...");
+	Log::Warning("正在下载更新...");
 
 	step = Downloading;
 

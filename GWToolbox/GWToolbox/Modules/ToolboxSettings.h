@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/Constants/Maps.h>
 
@@ -14,7 +14,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Toolbox Settings"; }
+	const char* Name() const override { return "助手设置"; }
 
 	void LoadModules(CSimpleIni* ini);
 	

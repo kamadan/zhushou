@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <Timer.h>
 #include <Defines.h>

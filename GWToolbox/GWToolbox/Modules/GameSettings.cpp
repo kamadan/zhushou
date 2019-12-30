@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GameSettings.h"
 
 #include <GWCA/Utilities/Scanner.h>
@@ -80,13 +80,13 @@ namespace {
 		DWORD time = 0;
 		const wchar_t *time_unit = L"";
 		if (hours != 0) {
-			time_unit = L"hour";
+			time_unit = L"小时";
 			time = hours;
 		} else if (minutes != 0) {
-			time_unit = L"minute";
+			time_unit = L"分钟";
 			time = minutes;
 		} else {
-			time_unit = L"second";
+			time_unit = L"秒";
 			time = secs;
 		}
 		if (time > 1) {
@@ -112,7 +112,7 @@ namespace {
 			DWORD diff_time = (clock() - game_setting.afk_message_time) / CLOCKS_PER_SEC;
 			wchar_t time_buffer[128];
 			PrintTime(time_buffer, 128, diff_time);
-			swprintf(buffer, 120, L"Automatic message: \"%s\" (%s ago)", game_setting.afk_message.c_str(), time_buffer);
+			swprintf(buffer, 120, L"Automatic message: \"%s\" (%s 前)", game_setting.afk_message.c_str(), time_buffer);
 			// Avoid infinite recursion
 			if (wcsncmp(from, ::GetPlayerName(), 20))
 				GW::Chat::SendChat(from, buffer);
@@ -560,7 +560,7 @@ void GameSettings::SaveSettings(CSimpleIni* ini) {
 
 void GameSettings::DrawSettingInternal() {
 	if (ImGui::TreeNode("Chat Colors")) {
-        ImGui::Text("Channel");
+        ImGui::Text("频道");
         ImGui::SameLine(chat_colors_grid_x[1]);
         ImGui::Text("Sender");
         ImGui::SameLine(chat_colors_grid_x[2]);
@@ -767,7 +767,7 @@ void GameSettings::FriendStatusCallback(
 	switch (status) {
 	case GW::FriendStatus_Offline:
         if (game_setting.notify_when_friends_offline) {
-		    snprintf(buffer, sizeof(buffer), "%S (%S) has just logged out.", charname, alias);
+		    snprintf(buffer, sizeof(buffer), "%S (%S) 刚下游戏.", charname, alias);
 		    GW::Chat::WriteChat(GW::Chat::Channel::CHANNEL_GLOBAL, buffer);
         }
 		return;

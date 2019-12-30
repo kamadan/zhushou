@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "logger.h"
 
 #include <GWCA/GameContainers/Array.h>
@@ -91,7 +91,7 @@ static void _vchatlog(GW::Chat::Channel chan, const char* format, va_list argv) 
 
 	const char* c = [](GW::Chat::Channel chan) -> const char* {
 		switch (chan) {
-		case CHAN_INFO: return "Info";
+		case CHAN_INFO: return "数据";
 		case CHAN_WARNING: return "Warning";
 		case CHAN_ERROR: return "Error";
 		default: return "";

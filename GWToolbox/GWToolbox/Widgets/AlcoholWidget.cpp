@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "AlcoholWidget.h"
 
 #include <GWCA/Constants/Constants.h>

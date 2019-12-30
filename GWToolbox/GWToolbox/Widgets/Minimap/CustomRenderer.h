@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/Constants/Maps.h>
 #include <GWCA/GameContainers/GamePos.h>

@@ -1,4 +1,4 @@
-#ifndef UTF8_H_INC
+﻿#ifndef UTF8_H_INC
 #define UTF8_H_INC
 
 #include <stddef.h>

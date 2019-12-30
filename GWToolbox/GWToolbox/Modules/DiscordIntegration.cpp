@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 // #include "base64.h"
 // #include "sha1.hpp"
 
@@ -74,9 +74,9 @@ static const char* region_names[] = {
     "Maguuma",
     "Ascalon",
     "Shiverpeak Mountains",
-    "Heroes' Ascent",
+    "英雄之路",
     "Crystal Desert",
-    "Fissure of Woe",
+    "灾难裂痕",
     "Presearing",
     "Kaineng",
     "Kurzick",
@@ -116,14 +116,14 @@ static const char* profession_names[] = {
 
 static const char* map_languages[] = {
     "English",
-    "Unknown",
+    "不明",
     "French",
     "German",
     "Italian",
     "Spanish",
-    "Unknown",
-    "Unknown",
-    "Unknown",
+    "不明",
+    "不明",
+    "不明",
     "Polish",
     "Russian"
 };
@@ -131,8 +131,8 @@ static const char* map_languages[] = {
 static const char* region_abbreviations[] = {
     "America", // America
     "Asia Korea", // Asia Korean
-    "Europe", // Europe
-    "Asia Chinese", // Asia Chinese
+    "欧洲", // Europe
+    "亚洲 中文", // Asia Chinese
     "Asia Japan" // Asia Japanese
 };
 

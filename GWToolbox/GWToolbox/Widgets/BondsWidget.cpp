@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "BondsWidget.h"
 
 #include <d3dx9tex.h>

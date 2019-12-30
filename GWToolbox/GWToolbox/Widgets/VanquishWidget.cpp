@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GuiUtils.h"
 
 #include <GWCA/Constants/Constants.h>

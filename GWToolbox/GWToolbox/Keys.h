@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define VK_0		0x30
 #define VK_1		0x31
@@ -86,7 +86,7 @@ static const char* KeyName(long vkey) {
 	case VK_SNAPSHOT: return "PrintScreen";
 	case VK_INSERT: return "Ins";
 	case VK_DELETE: return "Del";
-	case VK_HELP: return "Help";
+	case VK_HELP: return "说明";
 	case 0x30: return "0";
 	case 0x31: return "1";
 	case 0x32: return "2";
@@ -270,7 +270,7 @@ static const char* KeyName(long vkey) {
 	case VK_NONAME: return "Noname";
 	case VK_PA1: return "PA1";
 	case VK_OEM_CLEAR: return "Clear";
-	default: return "Unknown";
+	default: return "不明";
 	}
 }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 /*
 GetClipCursor Multi Monitor Fix

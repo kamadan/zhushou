@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SymbolsRenderer.h"
 
 #include <d3dx9math.h>

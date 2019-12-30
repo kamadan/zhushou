@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/Packets/StoC.h>
 #include <GWCA/Managers/StoCMgr.h>

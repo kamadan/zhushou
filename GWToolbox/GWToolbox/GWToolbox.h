@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Utf8.h"
 #include "ToolboxModule.h"

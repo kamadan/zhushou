@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CustomRenderer.h"
 
 #include <d3dx9math.h>
@@ -158,7 +158,7 @@ void CustomRenderer::DrawSettings() {
 			remove = true;
 			markers_changed = true;
 		}
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("删除");
 		ImGui::PopID();
 		if (remove) lines.erase(lines.begin() + i);
 	}
@@ -202,7 +202,7 @@ void CustomRenderer::DrawSettings() {
 			remove = true;
 			markers_changed = true;
 		}
-		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete");
+		if (ImGui::IsItemHovered()) ImGui::SetTooltip("删除");
 		ImGui::PopID();
 		if (remove) markers.erase(markers.begin() + i);
 	}

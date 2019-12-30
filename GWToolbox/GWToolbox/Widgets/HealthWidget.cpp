@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "HealthWidget.h"
 
 #include <GWCA/GameContainers/GamePos.h>
@@ -56,9 +56,9 @@ void HealthWidget::Draw(IDirect3DDevice9* pDevice) {
 			ImGui::PushFont(GuiUtils::GetFont(GuiUtils::f20));
 			cur = ImGui::GetCursorPos();
 			ImGui::SetCursorPos(ImVec2(cur.x + 1, cur.y + 1));
-			ImGui::TextColored(ImColor(0, 0, 0), "Health");
+			ImGui::TextColored(ImColor(0, 0, 0), "体力");
 			ImGui::SetCursorPos(cur);
-			ImGui::Text("Health");
+			ImGui::Text("体力");
 			ImGui::PopFont();
 
 			// perc
@@ -86,7 +86,7 @@ void HealthWidget::Draw(IDirect3DDevice9* pDevice) {
                         if (agent_name_ping.size()) {
                             char buffer[512];
                             int current_hp = (int)(target->hp * target->max_hp);
-                            snprintf(buffer, sizeof(buffer), "%S's Health is %d of %d. (%.0f %%)", agent_name_ping.c_str(), current_hp, target->max_hp, target->hp * 100.f);
+                            snprintf(buffer, sizeof(buffer), "%S的体力是 %d of %d. (%.0f %%)", agent_name_ping.c_str(), current_hp, target->max_hp, target->hp * 100.f);
                             GW::Chat::SendChat('#', buffer);
                         }
                     }

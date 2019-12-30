@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 /* 
 This class makes using timers easier

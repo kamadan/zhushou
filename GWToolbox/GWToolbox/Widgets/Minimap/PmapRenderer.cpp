@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "PmapRenderer.h"
 
 #include <d3dx9math.h>

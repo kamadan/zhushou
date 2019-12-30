@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <discord_game_sdk.h>
 

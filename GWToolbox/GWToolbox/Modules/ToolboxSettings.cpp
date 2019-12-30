@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #include <GWCA/Constants/Constants.h>
 
@@ -106,15 +106,15 @@ void ToolboxSettings::DrawSettingInternal() {
 	// Row 1
 	ImGui::Checkbox("Alcohol", &use_alcohol);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-	ImGui::Checkbox("Hotkeys", &use_hotkeys);
+	ImGui::Checkbox("快键", &use_hotkeys);
 	// Row 2
 	ImGui::Checkbox("Bonds", &use_bonds);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-	ImGui::Checkbox("Info", &use_info);
+	ImGui::Checkbox("数据", &use_info);
 	// Row 3
-	ImGui::Checkbox("Builds", &use_builds);
+	ImGui::Checkbox("样本", &use_builds);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-    ImGui::Checkbox("Materials", &use_materials);
+    ImGui::Checkbox("材料", &use_materials);
     // Row 4
 	ImGui::Checkbox("Chat Command", &use_chatcommand);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
@@ -122,7 +122,7 @@ void ToolboxSettings::DrawSettingInternal() {
     // Row 5
 	ImGui::Checkbox("Chat Filter", &use_chatfilter);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-    ImGui::Checkbox("Notepad", &use_notepad);
+    ImGui::Checkbox("便笺", &use_notepad);
     // Row 6
 	ImGui::Checkbox("Clock", &use_clock);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
@@ -130,9 +130,9 @@ void ToolboxSettings::DrawSettingInternal() {
     // Row 7
 	ImGui::Checkbox("Damage", &use_damage);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-    ImGui::Checkbox("Pcons", &use_pcons);
+    ImGui::Checkbox("补品", &use_pcons);
     // Row 8
-	ImGui::Checkbox("Dialogs", &use_dialogs);
+	ImGui::Checkbox("令码", &use_dialogs);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
     ImGui::Checkbox("Timer", &use_timer);
     // Row 9
@@ -140,19 +140,19 @@ void ToolboxSettings::DrawSettingInternal() {
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
     ImGui::Checkbox("Trade", &use_trade);
     // Row 10
-	ImGui::Checkbox("Distance", &use_distance);
+	ImGui::Checkbox("距离", &use_distance);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
-    ImGui::Checkbox("Travel", &use_travel);
+    ImGui::Checkbox("直达", &use_travel);
     // Row 11
 	ImGui::Checkbox("Game Settings", &use_gamesettings);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
     ImGui::Checkbox("Updater", &use_updater);
     // Row 12
-	ImGui::Checkbox("Health", &use_health);
+	ImGui::Checkbox("体力", &use_health);
 	ImGui::SameLine(ImGui::GetWindowWidth() / 2);
     ImGui::Checkbox("Vanquish counter", &use_vanquish);
     // Row 13
-	ImGui::Checkbox("Hero Builds", &use_herobuilds);
+	ImGui::Checkbox("英雄技能样本", &use_herobuilds);
 
 	ImGui::PopID();
 
@@ -262,10 +262,10 @@ void ToolboxSettings::Update(float delta) {
 					map_string = L"DoA";
 					break;
 				case GW::Constants::MapID::Urgozs_Warren:
-					map_string = L"Urgoz";
+					map_string = L"尔果";
 					break;
 				case GW::Constants::MapID::The_Deep:
-					map_string = L"Deep";
+					map_string = L"深处";
 					break;
 				case GW::Constants::MapID::The_Underworld:
 					map_string = L"UW";

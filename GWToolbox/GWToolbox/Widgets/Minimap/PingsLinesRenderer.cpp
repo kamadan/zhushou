@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "PingsLinesRenderer.h"
 
 #include <d3d9.h>

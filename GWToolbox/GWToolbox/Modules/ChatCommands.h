@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <GWCA/Constants/Constants.h>
 
@@ -17,7 +17,7 @@ public:
 		return instance;
 	}
 
-	const char* Name() const override { return "Chat Commands"; }
+	const char* Name() const override { return "对话框指令"; }
 
 	void Initialize() override;
 	void LoadSettings(CSimpleIni* ini) override;

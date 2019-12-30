@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "AgentRenderer.h"
 
 #include <GWCA/Constants/Constants.h>
@@ -174,7 +174,7 @@ void AgentRenderer::DrawSettings() {
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Cancel", ImVec2(120, 0))) {
+			if (ImGui::Button("取消", ImVec2(120, 0))) {
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::EndPopup();
@@ -844,7 +844,7 @@ bool AgentRenderer::CustomAgent::DrawSettings(AgentRenderer::CustomAgent::Operat
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Move the color down in the list");
 		ImGui::SameLine(0, spacing);
-		if (ImGui::Button("Delete", ImVec2(width, 0))) {
+		if (ImGui::Button("删除", ImVec2(width, 0))) {
 			ImGui::OpenPopup("Delete Color?");
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Delete the color");
@@ -856,7 +856,7 @@ bool AgentRenderer::CustomAgent::DrawSettings(AgentRenderer::CustomAgent::Operat
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Cancel", ImVec2(120, 0))) {
+			if (ImGui::Button("取消", ImVec2(120, 0))) {
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::EndPopup();
